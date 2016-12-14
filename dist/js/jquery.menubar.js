@@ -1,0 +1,2 @@
+!function(t){jQuery.fn.menubar=function(e){var o={textColor:"#000",backgroundColor:"#fff",fontSize:"1em",delay:"quite long",getTextFromTitle:!0,getTextFromRel:!1,getTextFromAlt:!1,animateWidth:!0,animateOpacity:!0,animateHeight:!0,animationDuration:500,clickImgToGoToNext:!0,clickImgToGoToLast:!1,nextButtonText:"next",previousButtonText:"previous",nextButtonTextColor:"red",previousButtonTextColor:"red"};t.extend({},o,e);return this.each(function(){})},alert("into3")}(jQuery);
+//# sourceMappingURL=jquery.menubar.js.map

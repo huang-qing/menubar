@@ -1,0 +1,1 @@
+{"version":3,"sources":["menubar.scss"],"names":[],"mappings":"AAAA,KACI,iBAAA,QADJ,cAGQ,iBAAA","file":"menubar.css","sourcesContent":["body {\r\n    background-color: seagreen;\r\n    .menubar {\r\n        background-color: burlywood;\r\n    }\r\n}"]}
