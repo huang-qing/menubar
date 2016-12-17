@@ -1,6 +1,71 @@
-body {
-    background-color: seagreen;
-    .menubar {
-        background-color: burlywood;
+.menubar {
+    font-family: 微软雅黑;
+    font-size: 12px;
+    padding: 4px 0 0 0;
+    color: #333;
+    background: url(../image/bg.png) repeat-x left bottom;
+    display: inline-block;
+    overflow: hidden;
+    height: 76px;
+    >.menubar-panel-group {
+        display: inline-block;
+        padding: 0 7px;
+        .menubar-panel-title {
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            background-color: #E6E9ED;
+            height: 16px;
+            line-height: 16px;
+        }
+        .menubar-panel-content {
+            padding: 3px 0 3px 0;
+            >.menubar-panel-content-group {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: inline-block;
+                vertical-align: top;
+                @import '_menubar-items'
+            }
+        }
+    }
+    >.menubar-panel-group.menubar-panel-line {
+        background: url(../image/panel-line.png) right bottom no-repeat;
+    }
+}
+
+.menubar-popup {
+    @import "_menubar-items";
+    list-style: none;
+    padding: 0;
+    margin-top: 12px;
+    font-size: 12px;
+    padding: 0;
+    position: absolute;
+    z-index: 9999;
+    background-color: #F6F9FD;
+    border: #CAD2D9 1px solid;
+    display: none;
+    font-family: 微软雅黑;
+    min-width: 8.5em;
+    li {
+        >a.menubar-item {
+            padding: 5px 18px 5px 16px;
+            white-space: nowrap;
+            &:hover {
+                background-color: #E6E9ED;
+            }
+            position:relative;
+        }
+        >a.menubar-item.arrows.menubar-item-popup-small {
+            padding-right: 0;
+            >.menubar-item-arrows.menubar-item-in-popup {
+                background: url('../image/arrows-right.png') no-repeat center center;
+                width: 16px;
+                height: 16px;
+                float: right;
+            }
+        }
     }
 }

@@ -44,12 +44,12 @@ gulp.task('build-js', function () {
         // .pipe(jshint.reporter('default'))
         // .pipe(concat('main.js'))
         // .pipe(gulp.dest('dist/js'))
-        .pipe(sourcemaps.init())
+        // .pipe(sourcemaps.init())
         // .pipe(rename({
         //     suffix: '.min'
         // }))
-        .pipe(uglify())
-        .pipe(sourcemaps.write('.'))
+        // .pipe(uglify())
+        // .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist/js'))
         .pipe(connect.reload())
         .pipe(notify({
@@ -66,10 +66,10 @@ gulp.task('build-image', function () {
             interlaced: true
         })))
         .pipe(gulp.dest('dist/image'))
-        .pipe(connect.reload())
-        .pipe(notify({
-            message: 'build-image task complete'
-        }));
+        .pipe(connect.reload());
+        // .pipe(notify({
+        //     message: 'build-image task complete'
+        // }));
 });
 
 // html
@@ -98,7 +98,7 @@ gulp.task('build-clean', function () {
 // 监视
 gulp.task('develop-watch', function () {
     // 监视所有.scss
-    gulp.watch('src/css/**/*.scss', ['build-css']);
+    gulp.watch('src/sass/**/*.scss', ['build-css']);
     // 监视所有.js
     gulp.watch('src/js/**/*.js', ['build-js']);
     // 监视所有图片
