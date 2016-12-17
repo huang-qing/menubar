@@ -23,7 +23,7 @@
                 // defaultItem类型
                 children: [],
                 onclick: function (menu, text, value) {
-                    console.log('menubar item click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                    console.log('menubar item click:' + 'text:' + text + 'value:' + value);
                 }
             },
             // 合并参数
