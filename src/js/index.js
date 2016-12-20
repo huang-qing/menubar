@@ -630,5 +630,14 @@ var settings = {
 
 };
 
-console.log('debugger');
+var sencondSettings = $.extend(true, {}, settings),
+    firstChildren = sencondSettings.items[0].children[0];
+
+firstChildren.text = '测试2';
+firstChildren.value = 'test2';
+firstChildren.onclick = function (text, value) {
+    console.log('menubar ' + text + ' click test');
+};
+
 $('#menubar').menubar(settings);
+$('#menubar-second').menubar(sencondSettings);

@@ -1,6 +1,11 @@
 .menubar {
     font-family: 微软雅黑;
     font-size: 12px;
+}
+
+.menubar-panel {
+    // font-family: 微软雅黑;
+    // font-size: 12px;
     padding: 4px 0 0 0;
     color: #333;
     background: url(../image/bg.png) repeat-x left bottom;
@@ -40,14 +45,14 @@
     list-style: none;
     padding: 0;
     margin-top: 12px;
-    font-size: 12px;
     padding: 0;
     position: absolute;
     z-index: 9999;
     background-color: #F6F9FD;
     border: #CAD2D9 1px solid;
     display: none;
-    font-family: 微软雅黑;
+    // font-family: 微软雅黑;
+    //     font-size: 12px;
     min-width: 8.5em;
     li {
         >a.menubar-item {
