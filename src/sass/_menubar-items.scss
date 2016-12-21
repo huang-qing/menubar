@@ -5,9 +5,11 @@ li {
         padding: 5px 8px;
         display: block;
         >.menubar-item-content {
-            display: inline-block;
+            display: table-cell;
             >.menubar-item-icon {
                 vertical-align: middle;
+                //去除ie img边框
+                border: none;
             }
             >.menubar-item-text {
                 vertical-align: middle;
@@ -16,7 +18,7 @@ li {
     }
     >a.menubar-item.arrows {
         >.menubar-item-arrows {
-            display: inline-block;
+            display: table-cell;
         }
         >.menubar-item-arrows.menubar-item-in-panel {
             background: url('../image/arrows-down.png') no-repeat center center;
@@ -26,8 +28,6 @@ li {
         padding-right: 0;
         >.menubar-item-arrows.menubar-item-in-panel {
             width: 10px;
-            height: 20px;
-            float: right;
             &:hover {
                 background-color: #fffff3;
             }
@@ -36,7 +36,6 @@ li {
     >a.menubar-item.arrows.menubar-item-panel-big {
         >.menubar-item-arrows.menubar-item-in-panel {
             width: 10px;
-            height: 36px;
         }
     }
     >a.menubar-item.menubar-item-panel-small {

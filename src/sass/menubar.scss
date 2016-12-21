@@ -4,11 +4,12 @@
 }
 
 .menubar-panel {
-    padding: 4px 0 0 0;
+    //padding: 4px 0 0 0;
     color: #333;
     background: url(../image/bg.png) repeat-x left bottom;
     display: inline-block;
     overflow: hidden;
+    height:80px;
     >.menubar-panel-group {
         display: inline-block;
         padding: 0 9px 0 5px;
@@ -16,7 +17,7 @@
         .menubar-panel-title {
             text-align: center;
             padding: 0;
-            margin: 0;
+            margin: 4px 0 0 0;
             background-color: #E6E9ED;
             height: 16px;
             line-height: 16px;
@@ -66,7 +67,6 @@
                 background: url('../image/arrows-right.png') no-repeat center center;
                 width: 16px;
                 height: 16px;
-                float: right;
             }
         }
     }
