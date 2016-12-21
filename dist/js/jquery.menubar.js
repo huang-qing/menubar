@@ -265,9 +265,10 @@
 
     // 默认参数
     var defaults = {
-            onclick: function (text, value, menuId) {
-                console.log('menubar click:' + ' text:' + text + ' value:' + value + ' menuId:' + menuId);
-            },
+            // onclick: function (text, value, menuId) {
+            //     console.log('menubar click:' + ' text:' + text + ' value:' + value + ' menuId:' + menuId);
+            // },
+            onclick: null,
             // [defaultItem]
             items: []
         },
@@ -284,9 +285,10 @@
             style: 'small',
             // defaultItem类型
             children: [],
-            onclick: function (menu, text, value) {
-                console.log('menubar item click:' + 'text:' + text + 'value:' + value);
-            }
+            // onclick: function (menu, text, value) {
+            //     console.log('menubar item click:' + 'text:' + text + 'value:' + value);
+            // },
+            onclick: null
         },
         settingsStore = {};
 
