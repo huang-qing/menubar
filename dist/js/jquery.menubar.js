@@ -294,7 +294,7 @@
     $(document).bind('click', function (event) {
         var target = $(event.target),
             targetClassName = target.attr('class'),
-            regItem = /menubar-item-content|menubar-item-icon|menubar-item-text/,
+            regItem = /menubar-item-content|menubar-item-icon|menubar-item-text|menubar-item /,
             regArrows = /menubar-item-arrows/,
             regPopup = /menubar-item-arrows-popup/,
             regItemInPanel = /menubar-item-panel/,
@@ -309,7 +309,7 @@
             onclickInMenu,
             menubarElem;
 
-        // 面板菜单项点击
+        // 菜单项点击
         if (regItem.test(targetClassName) || regArrows.test(targetClassName)) {
             itemElem = target.closest('.menubar-item');
             itemClassName = itemElem.attr('class');
