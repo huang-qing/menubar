@@ -297,10 +297,10 @@
             regItem = /menubar-item-content|menubar-item-icon|menubar-item-text/,
             regArrows = /menubar-item-arrows/,
             regPopup = /menubar-item-arrows-popup/,
-            regItemInPanel = /menubar-item-in-panel/,
+            regItemInPanel = /menubar-item-panel/,
             regItemArrows = /arrows/,
-            itemElem = target.closest('.menubar-item'),
-            itemClassName = itemElem.attr('class'),
+            itemElem,
+            itemClassName,
             isPopup,
             isPanelItem,
             item,
@@ -311,11 +311,13 @@
 
         // 面板菜单项点击
         if (regItem.test(targetClassName) || regArrows.test(targetClassName)) {
+            itemElem = target.closest('.menubar-item');
+            itemClassName = itemElem.attr('class');
             menubarElem = itemElem.closest('.menubar');
             menuId = menubarElem.attr('data-menuId');
             currentSettings = settingsStore[menuId];
             onclickInMenu = currentSettings._settings.onclick;
-            isPanelItem = regItemInPanel.test(targetClassName);
+            isPanelItem = regItemInPanel.test(itemClassName);
 
             // 点击菜单项内容，执行函数
             item = getSelectItem(currentSettings, itemElem);
