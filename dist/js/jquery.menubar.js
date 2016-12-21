@@ -7,13 +7,10 @@
             arrows = item.children && item.children.length > 0,
             iconUrl = item.icon.url || '',
             iconClass = !iconUrl ? item.icon.class || '' : '',
-            // itemIndex = data.length,
             template;
 
-        // data.push(item);
-
         template = ['<a href="#" class="menubar-item ',
-            'menubar-item-', style,
+            'menubar-item-', style, (item.last ? ' menubar-item-' + style + '-last ' : ''),
             (arrows ? ' arrows ' : ''), '" data-index="', index, '">',
             '  <span class="menubar-item-content" >',
             '       ', (iconUrl ? '<img class="menubar-item-icon" src="' + iconUrl + '"/>' : ''),
@@ -64,11 +61,13 @@
                     nextItem,
                     itemTemplate = ['<ul class="menubar-panel-content-group" >'];
 
+                item.last = i === len - 1;
                 items[i] = item;
 
                 if (item.style === 'big') {
                     item.style = 'panel-' + item.style || '';
                     // 大图标：放置一个
+
                     itemTemplate.push(createPanelContentItem(item, settings));
                 } else {
                     // 小图标：放置两个
@@ -77,10 +76,11 @@
 
                     nextItem = i + 1 < len ? $.extend(true, {}, defaultItem, items[i + 1]) : null;
                     if (nextItem && nextItem.style === 'small') {
-                        nextItem.style = 'panel-' + nextItem.style || '';
-                        itemTemplate.push(createPanelContentItem(nextItem, settings));
                         ++i;
+                        nextItem.style = 'panel-' + nextItem.style || '';
+                        nextItem.last = i === len - 1;
                         items[i] = nextItem;
+                        itemTemplate.push(createPanelContentItem(nextItem, settings));
                     } else {
                         itemTemplate.push('<li class="menubar-item-small-empty"></li>');
                     }
@@ -140,14 +140,12 @@
     // 点击事件相关方法
     function itemHandler (menuElem, item, onclickInMenu, settings) {
         var onclick = item.onclick || onclickInMenu;
-        // itemsInPopup = settings.itemsInPopup;
 
         if (typeof onclick === 'function') {
             onclick.call(menuElem[0], item.text, item.value, item.other);
         } else {
             console.error('onclick event callback not a function!');
         }
-        // destroyPopup(itemsInPopup);
     };
     // 显示弹出菜单
     function displayPopup (target, itemElem, item, isPanelItem, settings, container) {
@@ -159,7 +157,7 @@
             itemsInPopup = settings.itemsInPopup;
 
         // 创建(获取)popup弹出菜单
-        target.removeClass('hide').addClass('popup');
+        target.removeClass('menubar-item-arrows-hide').addClass('menubar-item-arrows-popup');
         popup = itemElem.find('>.menubar-popup');
         if (popup.length === 0) {
             popup = $((createPopupMenu(item.children, settings.id)));
@@ -215,7 +213,7 @@
                     popupIndex = popupSettings.parentIndex;
 
                 popup = popupSettings.popup;
-                arrows.removeClass('popup').addClass('hide');
+                arrows.removeClass('menubar-item-arrows-popup').addClass('menubar-item-arrows-hide');
                 popup.hide().unbind().remove();
                 popupList.pop();
 
@@ -298,7 +296,7 @@
             targetClassName = target.attr('class'),
             regItem = /menubar-item-content|menubar-item-icon|menubar-item-text/,
             regArrows = /menubar-item-arrows/,
-            regPopup = /popup/,
+            regPopup = /menubar-item-arrows-popup/,
             regItemInPanel = /menubar-item-in-panel/,
             regItemArrows = /arrows/,
             itemElem = target.closest('.menubar-item'),
@@ -346,18 +344,9 @@
                     displayPopup(target, itemElem, item, true, currentSettings, container);
                 }
 
-                // else {
-                //     destroyPopup(menubarData);
-                // }
-
                 return false;
             }
         } else {
-            // for (var i in settingsStore) {
-            //     // 点击其他位置
-            //     destroyPopup(settingsStore[i]);
-            // }
-
             destroyAllPopup(settingsStore);
         }
     });

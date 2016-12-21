@@ -4,17 +4,15 @@
 }
 
 .menubar-panel {
-    // font-family: 微软雅黑;
-    // font-size: 12px;
     padding: 4px 0 0 0;
     color: #333;
     background: url(../image/bg.png) repeat-x left bottom;
     display: inline-block;
     overflow: hidden;
-    height: 76px;
     >.menubar-panel-group {
         display: inline-block;
-        padding: 0 7px;
+        padding: 0 9px 0 5px;
+        vertical-align: top;
         .menubar-panel-title {
             text-align: center;
             padding: 0;
@@ -25,6 +23,7 @@
         }
         .menubar-panel-content {
             padding: 3px 0 3px 0;
+            height: 54px;
             >.menubar-panel-content-group {
                 list-style: none;
                 padding: 0;
@@ -51,8 +50,6 @@
     background-color: #F6F9FD;
     border: #CAD2D9 1px solid;
     display: none;
-    // font-family: 微软雅黑;
-    //     font-size: 12px;
     min-width: 8.5em;
     li {
         >a.menubar-item {
