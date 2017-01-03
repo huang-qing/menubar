@@ -1,35 +1,37 @@
 # 菜单工具栏（word风格工具栏）
 
-## VSCode Git
+word风格的菜单工具栏，支持多级菜单。
 
-### 使用命令行工具添加远程仓库:
+兼容IE8以上。
 
-```git cmd
-git remote add origin https://github.com/huang-qing/menubar.git
-```
+## 展示示例
 
-在git/config配置文件中,会添加以下配置信息：
-```
-[remote "orgin"]
-	url = https://github.com/huang-qing/menubar.git
-	fetch = +refs/heads/*:refs/remotes/orgin/*
-```
+![menu panel](https://github.com/huang-qing/menubar/raw/master/README/2017-01-03_115215_menuPanel.png)
 
-### 使用命令行工具添加master分支描述或在git工具栏中点击Publish
+![menu popup](https://github.com/huang-qing/menubar/raw/master/README/2017-01-03_115351_menuPopup.png)
 
-```git cmd
-git push -u orgin master
-```
+## 参数
 
-在git/config配置文件中,会添加以下配置信息：
-```
-[branch "master"]
-	remote = orgin
-	merge = refs/heads/master
-```
-----
+~~~javascript
+var option = {
+    onclick: function (text, value, menuId) {
+        console.log('menubar click test');
+    },
+	// defaultItem类型
+    items: [{
+        text: '编辑1',
+        value: '',
+        icon: {
+            url: '../image/bom16.png',
+            class: '../'
+        },
+        // panel-big small popup-small
+        style: 'small',
+        // defaultItem类型
+        children: []
+    }]
+};
+~~~
 
 
-
-## TASk
 
