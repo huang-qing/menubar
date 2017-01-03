@@ -355,30 +355,60 @@
         }
     });
 
+    var methods = {
+        init: function (options) {
+            return this.each(function () {
+                // 合并参数
+                var _settings = $.extend({}, defaults, options),
+                    // 菜单数据
+                    items = _settings.items,
+                    // 当前元素
+                    elem = $(this),
+                    id = createMenubarId(),
+                    newSettings;
+
+                // 数据持久化
+                newSettings = {
+                    id: id,
+                    menubarElem: elem,
+                    _settings: _settings,
+                    itemsInPopup: [],
+                    itemsInPanel: []
+                };
+                settingsStore[id] = newSettings;
+
+                // init
+                createMenu(elem, items, newSettings);
+            });
+        },
+        destroy: function () {
+            return this.each(function () {
+                var elem = $(this),
+                    id = elem.attr('data-menuid'),
+                    settings = settingsStore[id];
+
+                destroyPopup(settings);
+                elem.remove();
+                delete settingsStore[id];
+            });
+        }
+    };
+
     // 创建菜单
-    jQuery.fn.menubar = function (options) {
-        return this.each(function () {
-            // 合并参数
-            var _settings = $.extend({}, defaults, options),
-                // 菜单数据
-                items = _settings.items,
-                // 当前元素
-                elem = $(this),
-                id = createMenubarId(),
-                newSettings;
+    jQuery.fn.menubar = function () {
+        var method = arguments[0],
+            arg = arguments;
 
-            // 数据持久化
-            newSettings = {
-                id: id,
-                menubarElem: elem,
-                _settings: _settings,
-                itemsInPopup: [],
-                itemsInPanel: []
-            };
-            settingsStore[id] = newSettings;
+        if (methods[method]) {
+            method = methods[method];
+            arg = Array.prototype.slice.call(arguments, 1);
+        } else if (typeof (method) === 'object' || !method) {
+            method = methods.init;
+        } else {
+            $.error('Method ' + method + ' does not exist on jQuery.menubar');
+            return this;
+        }
 
-            // init
-            createMenu(elem, items, newSettings);
-        });
+        return method.apply(this, arg);
     };
 }(jQuery));
