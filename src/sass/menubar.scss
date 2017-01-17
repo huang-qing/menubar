@@ -101,8 +101,14 @@
     .menubar-panel-group,
     .menubar-panel-group.menubar-panel-line {
         background: none;
+        padding:0;
+
         .menubar-panel-title {
             display: none;
+        }
+        .menubar-panel-content
+        {
+            padding:0;
         }
     }
 }

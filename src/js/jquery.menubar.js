@@ -117,7 +117,7 @@
                 var item = items[i],
                     children = item.children;
 
-                template.push('<div class="menubar-panel-group thumbnail ', (i + 1 !== len ? 'menubar-panel-line' : ''), '" >');
+                template.push('<div class="menubar-panel-group ', (i + 1 !== len ? 'menubar-panel-line' : ''), '" >');
                 template.push(createPanelTitle(item));
                 template.push(createPanelContent(children, settings));
                 template.push('</div>');
@@ -154,16 +154,47 @@
         return template.join('');
     };
 
-    // 点击事件相关方法
-    function itemHandler (menuElem, item, onclickInMenu, settings) {
-        var onclick = item.onclick || onclickInMenu;
+    // 创建面板分组项弹出菜单
+    function displayPanelGroupPopupMenu (target, menuId, panelGroupElem, currentSettings) {
+        var panelGroupElemOffset,
+            panelPopup,
+            itemsInPanelGroupPopup = currentSettings.itemsInPanelGroupPopup;
 
-        if (typeof onclick === 'function') {
-            onclick.call(menuElem[0], item.text, item.value, item.other);
-        } else {
-            console.error('onclick event callback not a function!');
+        panelPopup = $('<div class="menubar menubar-panel menubar-panel-popup" data-menuId="' + menuId + '" ></div>').append(panelGroupElem.closest('.menubar-panel-group').clone());
+
+        panelPopup.find('.menubar-item-arrows').addClass('menubar-item-arrows-panel-group-popup');
+        // 弹出显示
+        panelGroupElemOffset = panelGroupElem.offset();
+        panelPopup.find('.menubar-panel-group.thumbnail').removeClass('thumbnail');
+        // 存储相关信息
+        itemsInPanelGroupPopup.push({
+            popup: panelPopup,
+            parentArrows: target
+        });
+
+        panelPopup.appendTo('body').css({
+            position: 'absolute',
+            top: (panelGroupElemOffset.top + panelGroupElem.height()) + 'px',
+            left: (panelGroupElemOffset.left - 2) + 'px'
+        }).show();
+    }
+
+    // 销毁面板分组项弹出菜单
+    function destroyPanelGroupPopupMenu (settings) {
+        var popup,
+            popupList = settings.itemsInPanelGroupPopup;
+
+        if (popupList && popupList.length > 0) {
+            for (var len = popupList.length - 1, i = len; i >= 0; i--) {
+                var popupSettings = popupList[i];
+
+                popup = popupSettings.popup;
+                popup.hide().unbind().remove();
+                popupList.pop();
+            }
         }
     };
+
     // 显示弹出下级菜单
     function displaySubPopup (target, itemElem, item, isPanelItem, settings, container) {
         var popup,
@@ -171,14 +202,14 @@
             position = {},
             relativeElem,
             itemIndex = parseInt(itemElem.attr('data-index')),
-            itemsInPopup = settings.itemsInPopup;
+            itemsInSubPopup = settings.itemsInSubPopup;
 
         // 创建(获取)popup弹出菜单
         target.removeClass('menubar-item-arrows-hide').addClass('menubar-item-arrows-popup');
         popup = itemElem.find('>.menubar-popup');
         if (popup.length === 0) {
             popup = $((createSubPopupMenu(item.children, settings.id)));
-            itemsInPopup.push({
+            itemsInSubPopup.push({
                 popup: popup,
                 parentItem: item,
                 parentIndex: itemIndex,
@@ -192,8 +223,8 @@
             offset = relativeElem.offset();
             // 在面板菜单中弹出的位置：下方
             position = {
-                top: offset.top + relativeElem.height(),
-                left: offset.left
+                top: (offset.top + relativeElem.height()) + 'px',
+                left: (offset.left - 1) + 'px'
             };
         } else {
             // 在popup弹出菜单弹出的位置：右方
@@ -221,7 +252,7 @@
     // 销毁弹出的下级菜单
     function destroySubPopup (settings, currentActiveItemIndex) {
         var popup,
-            popupList = settings.itemsInPopup;
+            popupList = settings.itemsInSubPopup;
 
         if (popupList && popupList.length > 0) {
             for (var len = popupList.length - 1, i = len; i >= 0; i--) {
@@ -244,9 +275,15 @@
     function destroyAllPopup (settings) {
         for (var i in settings) {
             // 点击其他位置
-            destroySubPopup(settings[i]);
+            destroyCurrentAllPopup(settings[i]);
         }
     };
+
+    // 销毁菜单
+    function destroyCurrentAllPopup (settings) {
+        destroySubPopup(settings);
+        destroyPanelGroupPopupMenu(settings);
+    }
     // 获取选中项数据
     function getSelectItem (settings, itemElem) {
         var list,
@@ -256,7 +293,7 @@
             itemIndex = parseInt(itemElem.attr('data-index')),
             item,
             itemsInPanel = settings.itemsInPanel,
-            itemsInPopup = settings.itemsInPopup;
+            itemsInSubPopup = settings.itemsInSubPopup;
 
         if (regPanelItem.test(itemClassName)) {
             list = itemsInPanel;
@@ -264,10 +301,10 @@
             // 查找弹出菜单对应的数据
             parentIndex = parseInt(itemElem.closest('.menubar-popup').attr('data-parentindex'));
 
-            for (var i = 0, len = itemsInPopup.length; i < len; i++) {
-                item = itemsInPopup[i];
+            for (var i = 0, len = itemsInSubPopup.length; i < len; i++) {
+                item = itemsInSubPopup[i];
                 if (parentIndex === item.parentIndex) {
-                    list = itemsInPopup[i].parentItem.children;
+                    list = itemsInSubPopup[i].parentItem.children;
                     break;
                 }
             }
@@ -278,6 +315,17 @@
     // 创建menubar编号
     function createMenubarId () {
         return 'menubar-' + (new Date()).getTime();
+    };
+
+    // 点击事件相关方法
+    function itemHandler (menuElem, item, onclickInMenu, settings) {
+        var onclick = item.onclick || onclickInMenu;
+
+        if (typeof onclick === 'function') {
+            onclick.call(menuElem[0], item.text, item.value, item.other);
+        } else {
+            console.error('onclick event callback not a function!');
+        }
     };
 
     // 默认参数
@@ -323,6 +371,7 @@
             regItemInPanel = /menubar-item-panel/,
             regItemArrows = /arrows/,
             regTitleInPanel = /menubar-panel-title/,
+            regPanelGroupPopup = /menubar-item-arrows-panel-group-popup/,
             itemElem,
             itemClassName,
             isPopup,
@@ -332,24 +381,16 @@
             currentSettings,
             onclickInMenu,
             menubarElem,
-            panelGroupElem,
-            panelGroupElemOffset,
-            panelPopup;
+            panelGroupElem;
 
         // 点击菜单面板缩略图模式，弹出面板
         if (regTitleInPanel.test(targetClassName) && (panelGroupElem = target.closest('.thumbnail')) && panelGroupElem.length === 1) {
             // 创建一个菜单面板当前所在分组的副本
             menubarElem = panelGroupElem.closest('.menubar');
             menuId = menubarElem.attr('data-menuId');
-            panelPopup = $('<div class="menubar menubar-panel menubar-panel-popup" data-menuId="' + menuId + '" ></div>').append(panelGroupElem.closest('.menubar-panel-group').clone());
-            // 弹出显示
-            panelGroupElemOffset = panelGroupElem.offset();
-            panelPopup.find('.menubar-panel-group.thumbnail').removeClass('thumbnail');
-            panelPopup.appendTo('body').css({
-                position: 'absolute',
-                top: (panelGroupElemOffset.top + panelGroupElem.height()) + 'px',
-                left: panelGroupElemOffset.left + 'px'
-            }).show();
+            currentSettings = settings[menuId];
+
+            displayPanelGroupPopupMenu(target, menuId, panelGroupElem, currentSettings);
         } else if (regItem.test(targetClassName) || regArrows.test(targetClassName)) {
             // 正常菜单项点击
             itemElem = target.closest('.menubar-item');
@@ -378,13 +419,19 @@
                 // 点击面板菜单下级菜单按钮
                 isPopup = regPopup.test(targetClassName);
                 if (!isPopup && isPanelItem) {
-                    var container = $('body'),
-                        containerTag = container[0].tagName.toLowerCase();
+                    // var container = $('body'),
+                    // containerTag = container[0].tagName.toLowerCase();
                     // 清除全部弹出菜单
-                    if (containerTag === 'body') {
+                    // if (containerTag === 'body') {
+                    //     destroyAllPopup(settings);
+                    // }
+                    if (!regPanelGroupPopup.test(targetClassName)) {
                         destroyAllPopup(settings);
+                    } else {
+                        destroySubPopup(currentSettings);
                     }
-                    displaySubPopup(target, itemElem, item, true, currentSettings, container);
+                    // displaySubPopup(target, itemElem, item, true, currentSettings, container);
+                    displaySubPopup(target, itemElem, item, true, currentSettings, $('body'));
                 }
 
                 return false;
@@ -412,7 +459,8 @@
                     id: id,
                     menubarElem: elem,
                     _settings: _settings,
-                    itemsInPopup: [],
+                    itemsInSubPopup: [],
+                    itemsInPanelGroupPopup: [],
                     itemsInPanel: []
                 };
                 settings[id] = newSettings;
@@ -424,10 +472,10 @@
         destroy: function () {
             return this.each(function () {
                 var elem = $(this),
-                    id = elem.attr('data-menuid'),
+                    id = elem.find('>.menubar').attr('data-menuid'),
                     _settings = settings[id];
 
-                destroySubPopup(_settings);
+                destroyCurrentAllPopup(_settings);
                 elem.remove();
                 delete settings[id];
             });
