@@ -1,0 +1,76 @@
+li {
+    >a.menubar-item {
+        color: #333;
+        text-decoration: none;
+        padding: 5px 8px;
+        display: block;
+        >.menubar-item-content {
+            display: table-cell;
+            >.menubar-item-icon {
+                vertical-align: middle;
+                //去除ie img边框
+                border: none;
+                width:16px;
+                height:16px;
+            }
+            >.menubar-item-text {
+                vertical-align: middle;
+            }
+        }
+    }
+    >a.menubar-item.arrows {
+        >.menubar-item-arrows {
+            display: table-cell;
+        }
+        >.menubar-item-arrows.menubar-item-in-panel {
+            background: url('../image/arrows-down.png') no-repeat center center;
+        }
+    }
+    >a.menubar-item.arrows.menubar-item-panel-small {
+        padding-right: 0;
+        >.menubar-item-arrows.menubar-item-in-panel {
+            width: 10px;
+            &:hover {
+                background-color: #fffff3;
+            }
+        }
+    }
+    >a.menubar-item.arrows.menubar-item-panel-big {
+        >.menubar-item-arrows.menubar-item-in-panel {
+            width: 10px;
+        }
+    }
+    >a.menubar-item.menubar-item-panel-small {
+        >.menubar-item-content {
+            height: 16px;
+            line-height: 16px;
+            >.menubar-item-icon {
+                width: 16px;
+                height: 16px;
+                line-height: 16px;
+            }
+            >.menubar-item-text {
+                line-height: 16px;
+            }
+        }
+    }
+    >a.menubar-item.menubar-item-panel-big {
+        background: url(../image/item-panel-big.png) right center no-repeat;
+        >.menubar-item-content {
+            height: auto;
+            >.menubar-item-icon {
+                width: 24px;
+                height: 24px;
+                display: block;
+                margin: auto;
+            }
+            >.menubar-item-text {
+                display: block;
+                text-align: center;
+            }
+        }
+        &.menubar-item-panel-big-last {
+            background: none;
+        }
+    }
+}

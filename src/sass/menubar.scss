@@ -9,7 +9,7 @@
     background: url(../image/bg.png) repeat-x left bottom;
     display: inline-block;
     overflow: hidden;
-    height:80px;
+    height: 80px;
     >.menubar-panel-group {
         display: inline-block;
         padding: 0 9px 0 5px;
@@ -21,6 +21,27 @@
             background-color: #E6E9ED;
             height: 16px;
             line-height: 16px;
+            padding-left: 10px;
+            padding-right: 10px;
+            .menubar-panel-title-content {
+                display: inline-block;
+                vertical-align: top;
+                height: 16px;
+                .menubar-panel-title-icon {
+                    vertical-align: middle;
+                    display: none;
+                }
+                .menubar-panel-title-text {
+                    vertical-align: middle;
+                }
+            }
+            .menubar-panel-title-arrows {
+                display: inline-block;
+                background: url(../image/arrows-down.png) center center no-repeat;
+                width: 10px;
+                height: 16px;
+                display: none;
+            }
         }
         .menubar-panel-content {
             padding: 3px 0 3px 0;
@@ -35,8 +56,54 @@
             }
         }
     }
+    >.menubar-panel-group.thumbnail {
+        height: 100%;
+        .menubar-panel-title {
+            background: none;
+            height: 100%;
+            cursor: pointer;
+            padding-top: 20px;
+            .menubar-panel-title-content {
+                display: block;
+                height: 40px;
+                .menubar-panel-title-icon {
+                    display: block;
+                    width: 24px;
+                    height: 24px;
+                }
+                .menubar-panel-title-text {
+                    display: block;
+                }
+            }
+            .menubar-panel-title-arrows {
+                display: inline-block;
+                background: url(../image/arrows-down.png) center center no-repeat;
+                height: 10px;
+                display: block;
+                width: 100%;
+            }
+        }
+        .menubar-panel-content {
+            display: none;
+        }
+    }
     >.menubar-panel-group.menubar-panel-line {
         background: url(../image/panel-line.png) right bottom no-repeat;
+    }
+}
+
+.menubar-panel.menubar-panel-popup {
+    height: auto;
+    border: #b9bdc0 1px solid;
+    background:none;
+    background-color: #f7fafe;
+    z-index:9999;
+    .menubar-panel-group,
+    .menubar-panel-group.menubar-panel-line {
+        background: none;
+        .menubar-panel-title {
+            display: none;
+        }
     }
 }
 
@@ -70,4 +137,11 @@
             }
         }
     }
+}
+
+.menubar-division
+{
+    display:block;
+    height:1px;
+    width:1px;
 }
