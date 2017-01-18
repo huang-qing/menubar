@@ -20,7 +20,7 @@ var gulp = require('gulp'),
 
 // 样式
 gulp.task('build-css', function () {
-    return gulp.src(['src/sass/**/*.scss'])
+    return gulp.src(['src/**/*.scss'])
         // .pipe(less())
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
@@ -30,7 +30,7 @@ gulp.task('build-css', function () {
         // }))
         .pipe(minifycss())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist/css'))
+        .pipe(gulp.dest('dist'))
         .pipe(connect.reload())
         .pipe(notify({
             message: 'build-css task complete'
@@ -39,7 +39,7 @@ gulp.task('build-css', function () {
 
 // 脚本
 gulp.task('build-js', function () {
-    return gulp.src(['src/js/**/*.js'])
+    return gulp.src(['src/**/*.js'])
         // .pipe(jshint('.jshintrc'))
         // .pipe(jshint.reporter('default'))
         // .pipe(concat('main.js'))
@@ -50,7 +50,7 @@ gulp.task('build-js', function () {
         // }))
         // .pipe(uglify())
         // .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist/js'))
+        .pipe(gulp.dest('dist'))
         .pipe(connect.reload())
         .pipe(notify({
             message: 'build-js task complete'
@@ -59,13 +59,13 @@ gulp.task('build-js', function () {
 
 // 图片
 gulp.task('build-image', function () {
-    return gulp.src(['src/image/**/*'])
+    return gulp.src(['src/**/*.png'])
         .pipe(cache(imagemin({
             optimizationLevel: 3,
             progressive: true,
             interlaced: true
         })))
-        .pipe(gulp.dest('dist/image'))
+        .pipe(gulp.dest('dist'))
         .pipe(connect.reload());
         // .pipe(notify({
         //     message: 'build-image task complete'
@@ -98,11 +98,11 @@ gulp.task('build-clean', function () {
 // 监视
 gulp.task('develop-watch', function () {
     // 监视所有.scss
-    gulp.watch('src/sass/**/*.scss', ['build-css']);
+    gulp.watch('src/**/*.scss', ['build-css']);
     // 监视所有.js
-    gulp.watch('src/js/**/*.js', ['build-js']);
+    gulp.watch('src/**/*.js', ['build-js']);
     // 监视所有图片
-    gulp.watch('src/image/**/*', ['build-image']);
+    gulp.watch('src/**/*.png', ['build-image']);
     // 监视所有html
     gulp.watch('src/**/*.html', ['build-html']);
     // 建立即时重整伺服器

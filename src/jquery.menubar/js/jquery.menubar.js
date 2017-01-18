@@ -419,7 +419,7 @@
 
     // 默认参数
     var defaults = {
-            // onclick: function (text, value, menuId) {
+            // onclick: function (text, value) {
             //     console.log('menubar click:' + ' text:' + text + ' value:' + value + ' menuId:' + menuId);
             // },
             onclick: null,
@@ -439,7 +439,7 @@
             style: 'small',
             // defaultItem类型
             children: [],
-            // onclick: function (menu, text, value) {
+            // onclick: function ( text, value) {
             //     console.log('menubar item click:' + 'text:' + text + 'value:' + value);
             // },
             onclick: null
