@@ -24,7 +24,7 @@
 
 ![menubar thumbnail](https://github.com/huang-qing/menubar/raw/master/README/2017-01-18_102842_thumbnail.png)
 
-![menubar thumbnail-panel](https://github.com/huang-qing/menubar/raw/master/README/2017-01-18_102842_thumbnail_panel.png)
+![menubar thumbnail-panel](https://github.com/huang-qing/menubar/raw/master/README/2017-01-18_102953_thumbnail_panel.png)
 
 #### 菜单工具栏下级弹出菜单
 
@@ -95,17 +95,17 @@ var settings = {
 
 配置每个菜单的具体的信息，是一个数组对象。
 
-### `items`下的每个item
+### `items`下的每个`item`
 
-`text`:菜单项的显示值
+`text`:菜单项的显示值。
 
-`value`:菜单项的编码值
+`value`:菜单项的编码值。
 
 `icon`:菜单项的显示图标，是一个对象。其中`url`为图片的路径；`class`为图片的class，一般为雪碧图使用。`url`的优先级较高。
 
 `style`:菜单的显示样式。`small`,`big`两个选项，默认为`small`。
 
-`onclick`:菜单项的`onclick`事件，可以覆盖默认的全局事件
+`onclick`:菜单项的`onclick`事件，可以覆盖默认的全局事件。
 
 `children`:配置此菜单项的下级对象，格式与`items`一致。
 
