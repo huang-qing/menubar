@@ -3,6 +3,7 @@ var settings = {
     onclick: function (text, value, menuId) {
         console.log('menubar click test');
     },
+    autoLayout: false,
     items: [{
         text: '编辑',
         value: '',
@@ -934,6 +935,7 @@ var testPanelLayout = {
     onclick: function (text, value, menuId) {
         console.log('menubar click test');
     },
+    autoLayout: false,
     items: [{
         text: '编辑1',
         value: '',

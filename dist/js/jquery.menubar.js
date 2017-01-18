@@ -317,6 +317,95 @@
         return 'menubar-' + (new Date()).getTime();
     };
 
+    // 计算菜单面板各分组项的宽度
+    function calculatePanelGroupsWidth (menubarElem, setting) {
+        setTimeout(function () {
+            menubarElem.find('.menubar-panel-group ').each(function () {
+                calculatePanelGroupWidth($(this), setting, 'normal', null);
+            });
+
+            layout(menubarElem, setting.panelGroups);
+        }, 200);
+    }
+
+    // 计算菜单面板分组项的宽度
+    function calculatePanelGroupWidth (elem, setting, state, index) {
+        var panelGroup,
+            width = elem.outerWidth();
+
+        // 不指定序号，则创建一个新的记录
+        if (!index) {
+            panelGroup = {
+                normal: null,
+                thumbnail: 60,
+                state: 'normal'
+            };
+
+            setting.panelGroups.push(panelGroup);
+        } else {
+            panelGroup = setting[index];
+        }
+        panelGroup[state] = width;
+    }
+
+    // 自适应布局
+    function layout (menubarElem, panelGroups) {
+        var width = menubarElem.width(),
+            // index,
+            panelGroup,
+            total;
+
+        // 计算总长度
+        function calculateWidth (panelGroups) {
+            var total = 0,
+                width = 0,
+                panelGroup;
+
+            for (var len = panelGroups.length - 1, i = len; i >= 0; i--) {
+                panelGroup = panelGroups[i];
+                width = panelGroup[panelGroup.state];
+
+                total += width;
+            }
+
+            return total;
+        }
+
+        // 重置panelGroup state 为 normal
+        for (var len = panelGroups.length - 1, i = len; i >= 0; i--) {
+            panelGroups[i].state = 'normal';
+        }
+
+        // 计算合理的布局
+        for (len = panelGroups.length - 1, i = len; i >= 0; i--) {
+            if (i === len) {
+                total = calculateWidth(panelGroups);
+                if (total <= width) {
+                    break;
+                }
+            }
+
+            panelGroup = panelGroups[i];
+            panelGroup.state = 'thumbnail';
+
+            total = calculateWidth(panelGroups);
+            if (total <= width) {
+                break;
+            }
+        }
+
+        // 调整panelGroup布局样式
+        menubarElem.find('.menubar-panel-group').each(function (i) {
+            var panelGroupElem = $(this),
+                panelGroup = panelGroups[i],
+                className = panelGroup.state;
+
+            if (!panelGroupElem.hasClass(className)) {
+                panelGroupElem.removeClass('normal').removeClass('thumbnail').addClass(className);
+            }
+        });
+    }
+
     // 点击事件相关方法
     function itemHandler (menuElem, item, onclickInMenu, settings) {
         var onclick = item.onclick || onclickInMenu;
@@ -334,7 +423,8 @@
             //     console.log('menubar click:' + ' text:' + text + ' value:' + value + ' menuId:' + menuId);
             // },
             onclick: null,
-            items: []
+            items: [],
+            autoLayout: true
         },
         // 默认菜单项参数
         defaultItem = {
@@ -414,23 +504,18 @@
 
                 itemHandler(currentSettings.menubarElem, item, onclickInMenu, currentSettings);
                 destroyAllPopup(settings);
+
                 return false;
             } else if (regArrows.test(targetClassName)) {
                 // 点击面板菜单下级菜单按钮
                 isPopup = regPopup.test(targetClassName);
                 if (!isPopup && isPanelItem) {
-                    // var container = $('body'),
-                    // containerTag = container[0].tagName.toLowerCase();
-                    // 清除全部弹出菜单
-                    // if (containerTag === 'body') {
-                    //     destroyAllPopup(settings);
-                    // }
                     if (!regPanelGroupPopup.test(targetClassName)) {
                         destroyAllPopup(settings);
                     } else {
                         destroySubPopup(currentSettings);
                     }
-                    // displaySubPopup(target, itemElem, item, true, currentSettings, container);
+
                     displaySubPopup(target, itemElem, item, true, currentSettings, $('body'));
                 }
 
@@ -441,6 +526,17 @@
         }
     });
 
+    $(window).resize(function () {
+        var _settings = settings,
+            _setting;
+
+        for (var i in _settings) {
+            _setting = _settings[i];
+            if (_setting._settings.autoLayout) {
+                layout(_setting.menubarElem, _setting.panelGroups);
+            }
+        }
+    });
     // api
     var methods = {
         init: function (options) {
@@ -461,12 +557,15 @@
                     _settings: _settings,
                     itemsInSubPopup: [],
                     itemsInPanelGroupPopup: [],
-                    itemsInPanel: []
+                    itemsInPanel: [],
+                    panelGroups: []
                 };
                 settings[id] = newSettings;
 
                 // init
                 createMenu(elem, items, newSettings);
+
+                calculatePanelGroupsWidth(elem, newSettings);
             });
         },
         destroy: function () {
@@ -478,6 +577,15 @@
                 destroyCurrentAllPopup(_settings);
                 elem.remove();
                 delete settings[id];
+            });
+        },
+        layout: function () {
+            return this.each(function () {
+                var elem = $(this),
+                    id = elem.find('>.menubar').attr('data-menuid'),
+                    currentSetting = settings[id];
+
+                layout(currentSetting.menubarElem, currentSetting.panelGroups);
             });
         }
     };
