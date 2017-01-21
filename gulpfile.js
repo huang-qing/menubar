@@ -20,17 +20,26 @@ var gulp = require('gulp'),
 
 // 样式
 gulp.task('build-css', function () {
-    return gulp.src(['src/**/*.scss'])
+    return gulp.src(['./src/**/*.scss'])
         // .pipe(less())
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+        // .pipe(sourcemaps.write({includeContent: false}))
+        // .pipe(sourcemaps.write({
+        //     includeContent: false
+        // }))
+        // .pipe(sourcemaps.init({
+        //     loadMaps: true
+        // }))
+        // .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+         .pipe(autoprefixer())
         // .pipe(rename({
         //     suffix: '.min'
         // }))
-        .pipe(minifycss())
+        // minifycss 不支持 sourcemaps
+        // .pipe(minifycss())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('./dist'))
         .pipe(connect.reload())
         .pipe(notify({
             message: 'build-css task complete'
@@ -67,9 +76,9 @@ gulp.task('build-image', function () {
         })))
         .pipe(gulp.dest('dist'))
         .pipe(connect.reload());
-        // .pipe(notify({
-        //     message: 'build-image task complete'
-        // }));
+    // .pipe(notify({
+    //     message: 'build-image task complete'
+    // }));
 });
 
 // html
