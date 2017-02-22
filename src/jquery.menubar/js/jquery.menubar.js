@@ -6,7 +6,8 @@
             style = item.style,
             arrows = item.children && item.children.length > 0,
             iconUrl = item.icon.url || '',
-            iconClass = !iconUrl ? item.icon.class || '' : '',
+            // ie8 class为关键字
+            iconClass = !iconUrl ? item.icon['class'] || '' : '',
             template;
 
         template = ['<a href="#" class="menubar-item ',
@@ -39,7 +40,7 @@
         var text = item.text,
             arrows = item.children && item.children.length > 0,
             iconUrl = item.icon.url || '',
-            iconClass = !iconUrl ? item.icon.class || '' : '',
+            iconClass = !iconUrl ? item.icon['class'] || '' : '',
             template;
 
         template = ['<p href="#" class="menubar-panel-title',
@@ -432,7 +433,7 @@
             value: '',
             icon: {
                 url: '',
-                class: ''
+                'class': ''
             },
             other: {},
             // big small
