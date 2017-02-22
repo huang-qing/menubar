@@ -166,7 +166,7 @@
         panelPopup.find('.menubar-item-arrows').addClass('menubar-item-arrows-panel-group-popup');
         // 弹出显示
         panelGroupElemOffset = panelGroupElem.offset();
-        panelPopup.find('.menubar-panel-group.thumbnail').removeClass('thumbnail');
+        panelPopup.find('.menubar-panel-group.menubar-panel-group-thumbnail').removeClass('menubar-panel-group-thumbnail');
         // 存储相关信息
         itemsInPanelGroupPopup.push({
             popup: panelPopup,
@@ -399,10 +399,10 @@
         menubarElem.find('.menubar-panel-group').each(function (i) {
             var panelGroupElem = $(this),
                 panelGroup = panelGroups[i],
-                className = panelGroup.state;
+                className = panelGroup.state === 'thumbnail' ? 'menubar-panel-group-thumbnail' : 'normal';
 
             if (!panelGroupElem.hasClass(className)) {
-                panelGroupElem.removeClass('normal').removeClass('thumbnail').addClass(className);
+                panelGroupElem.removeClass('normal').removeClass('menubar-panel-group-thumbnail').addClass(className);
             }
         });
     }
@@ -475,7 +475,7 @@
             panelGroupElem;
 
         // 点击菜单面板缩略图模式，弹出面板
-        if (regTitleInPanel.test(targetClassName) && (panelGroupElem = target.closest('.thumbnail')) && panelGroupElem.length === 1) {
+        if (regTitleInPanel.test(targetClassName) && (panelGroupElem = target.closest('.menubar-panel-group-thumbnail')) && panelGroupElem.length === 1) {
             // 创建一个菜单面板当前所在分组的副本
             menubarElem = panelGroupElem.closest('.menubar');
             menuId = menubarElem.attr('data-menuId');

@@ -12,7 +12,8 @@
   .menubar-panel > .menubar-panel-group {
     display: inline-block;
     padding: 0 9px 0 5px;
-    vertical-align: top; }
+    vertical-align: top;
+    height: 100%; }
     .menubar-panel > .menubar-panel-group .menubar-panel-title {
       text-align: center;
       padding: 0;
@@ -96,29 +97,29 @@
               text-align: center; }
           .menubar-panel > .menubar-panel-group .menubar-panel-content > .menubar-panel-content-group li > a.menubar-item.menubar-item-panel-big.menubar-item-panel-big-last {
             background: none; }
-  .menubar-panel > .menubar-panel-group.thumbnail {
+  .menubar-panel > .menubar-panel-group.menubar-panel-group-thumbnail {
     height: 100%; }
-    .menubar-panel > .menubar-panel-group.thumbnail .menubar-panel-title {
+    .menubar-panel > .menubar-panel-group.menubar-panel-group-thumbnail .menubar-panel-title {
       background: none;
       height: 100%;
       cursor: pointer;
       padding-top: 20px; }
-      .menubar-panel > .menubar-panel-group.thumbnail .menubar-panel-title .menubar-panel-title-content {
+      .menubar-panel > .menubar-panel-group.menubar-panel-group-thumbnail .menubar-panel-title .menubar-panel-title-content {
         display: block;
         height: 40px; }
-        .menubar-panel > .menubar-panel-group.thumbnail .menubar-panel-title .menubar-panel-title-content .menubar-panel-title-icon {
+        .menubar-panel > .menubar-panel-group.menubar-panel-group-thumbnail .menubar-panel-title .menubar-panel-title-content .menubar-panel-title-icon {
           display: block;
           width: 24px;
           height: 24px; }
-        .menubar-panel > .menubar-panel-group.thumbnail .menubar-panel-title .menubar-panel-title-content .menubar-panel-title-text {
+        .menubar-panel > .menubar-panel-group.menubar-panel-group-thumbnail .menubar-panel-title .menubar-panel-title-content .menubar-panel-title-text {
           display: block; }
-      .menubar-panel > .menubar-panel-group.thumbnail .menubar-panel-title .menubar-panel-title-arrows {
+      .menubar-panel > .menubar-panel-group.menubar-panel-group-thumbnail .menubar-panel-title .menubar-panel-title-arrows {
         display: inline-block;
         background: url(../image/arrows-down.png) center center no-repeat;
         height: 10px;
         display: block;
         width: 100%; }
-    .menubar-panel > .menubar-panel-group.thumbnail .menubar-panel-content {
+    .menubar-panel > .menubar-panel-group.menubar-panel-group-thumbnail .menubar-panel-content {
       display: none; }
   .menubar-panel > .menubar-panel-group.menubar-panel-line {
     background: url(../image/panel-line.png) right bottom no-repeat; }

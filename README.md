@@ -133,5 +133,17 @@ $('#menubar').menubar('destroy');
 $('#menubar').menubar('layout');
 ~~~
 
+###开发
+
+创建build
+~~~
+gulp build
+~~~
+
+开发环境
+~~~
+gulp develop
+~~~
+
 
 
