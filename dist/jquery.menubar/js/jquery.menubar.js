@@ -497,6 +497,7 @@
 
         // 点击菜单面板缩略图模式，弹出面板
         if (regTitleInPanel.test(targetClassName) && (panelGroupElem = target.closest('.menubar-panel-group-thumbnail')) && panelGroupElem.length === 1) {
+             destroyAllPopup(settings);
             // 创建一个菜单面板当前所在分组的副本
             menubarElem = panelGroupElem.closest('.menubar');
             menuId = menubarElem.attr('data-menuId');
@@ -571,7 +572,6 @@
             currentSettings = settings[menuId];
             item = getSelectItem(currentSettings, itemElem);
         } else {
-            debugger;
             itemElem = target.closest('.menubar-panel-title');
             menubarElem = itemElem.closest('.menubar');
             menuId = menubarElem.attr('data-menuId');

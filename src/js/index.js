@@ -35,17 +35,17 @@ var settings = {
                         small: 'sprite-16-bom-hover',
                         big: 'sprite-24-bom-hover'
                     }
+                },
+                url: {
+                    'default': {
+                        small: '../image/bom16.png',
+                        big: '../image/bom16.png'
+                    },
+                    hover: {
+                        small: '../image/bom24.png',
+                        big: '../image/bom24.png'
+                    }
                 }
-                //, url: {
-                //     'default': {
-                //         small: '../image/bom16.png',
-                //         big: '../image/bom16.png'
-                //     },
-                //     hover: {
-                //         small: '../image/bom24.png',
-                //         big: '../image/bom24.png'
-                //     }
-                // }
             },
             // panel-big small popup-small
             style: 'big',

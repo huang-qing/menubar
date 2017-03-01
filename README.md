@@ -69,8 +69,27 @@ var settings = {
         text: '编辑1',
         value: '',
         icon: {
-            url: '../image/bom16.png',
-            class: '../'
+                url: {
+                    'default': {
+                        small: '../image/bom16.png',
+                        big: '../image/bom16.png'
+                    },
+                    hover: {
+                        small: '../image/bom24.png',
+                        big: '../image/bom24.png'
+                    }
+                },
+                //或者
+                sprite: {
+                    'default': {
+                        small: 'sprite-16-bom-default',
+                        big: 'sprite-24-bom-default'
+                    },
+                    hover: {
+                        small: 'sprite-16-bom-hover',
+                        big: 'sprite-24-bom-hover'
+                    }
+                }
         },
         // panel-big small popup-small
         style: 'small',
@@ -101,7 +120,7 @@ var settings = {
 
 `value`:菜单项的编码值。
 
-`icon`:菜单项的显示图标，是一个对象。其中`url`为图片的路径；`class`为图片的class，一般为雪碧图使用。`url`的优先级较高。
+`icon`:菜单项的显示图标，是一个对象。其中`url`为图片的路径；`sprite`为雪碧圖的className，一般为雪碧图使用。`url`的优先级较高。
 
 `style`:菜单的显示样式。`small`,`big`两个选项，默认为`small`。
 
