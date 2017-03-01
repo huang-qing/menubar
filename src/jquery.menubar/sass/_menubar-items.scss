@@ -12,6 +12,7 @@ li {
                 border: none;
                 width:16px;
                 height:16px;
+                display:inline-block;
             }
             >.menubar-item-text {
                 vertical-align: middle;
@@ -49,6 +50,7 @@ li {
                 height: 16px;
                 line-height: 16px;
             }
+            
             >.menubar-item-text {
                 line-height: 16px;
             }
@@ -56,6 +58,8 @@ li {
     }
     >a.menubar-item.menubar-item-panel-big {
         background: url(../image/item-panel-big.png) right center no-repeat;
+        min-height: 40px;
+
         >.menubar-item-content {
             height: auto;
             >.menubar-item-icon {

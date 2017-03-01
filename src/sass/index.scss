@@ -3,3 +3,35 @@ body {
         margin-bottom: 10em;
     }
 }
+
+.sprite-16-bom-default {
+    width: 16px;
+    height: 16px;
+    background-image: url(../image/sprite@16.png);
+    background-position-x: 0px;
+    background-position-y: 0px;
+}
+
+.sprite-16-bom-hover {
+    width: 16px;
+    height: 16px;
+    background-image: url(../image/sprite@16.png);
+    background-position-x: 0px;
+    background-position-y: -16px;
+}
+
+.sprite-24-bom-default {
+    width: 24px;
+    height: 24px;
+    background-image: url(../image/sprite@24.png);
+    background-position-x: 0px;
+    background-position-y: 0px;
+}
+
+.sprite-24-bom-hover {
+    width: 24px;
+    height: 24px;
+    background-image: url(../image/sprite@24.png);
+    background-position-x: 0px;
+    background-position-y: -24px;
+}

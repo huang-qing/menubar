@@ -22,7 +22,8 @@
       height: 16px;
       line-height: 16px;
       padding-left: 10px;
-      padding-right: 10px; }
+      padding-right: 10px;
+      cursor: default; }
       .menubar-panel > .menubar-panel-group .menubar-panel-title .menubar-panel-title-content {
         display: inline-block;
         vertical-align: top;
@@ -59,7 +60,8 @@
               vertical-align: middle;
               border: none;
               width: 16px;
-              height: 16px; }
+              height: 16px;
+              display: inline-block; }
             .menubar-panel > .menubar-panel-group .menubar-panel-content > .menubar-panel-content-group li > a.menubar-item > .menubar-item-content > .menubar-item-text {
               vertical-align: middle; }
         .menubar-panel > .menubar-panel-group .menubar-panel-content > .menubar-panel-content-group li > a.menubar-item.arrows > .menubar-item-arrows {
@@ -84,7 +86,8 @@
           .menubar-panel > .menubar-panel-group .menubar-panel-content > .menubar-panel-content-group li > a.menubar-item.menubar-item-panel-small > .menubar-item-content > .menubar-item-text {
             line-height: 16px; }
         .menubar-panel > .menubar-panel-group .menubar-panel-content > .menubar-panel-content-group li > a.menubar-item.menubar-item-panel-big {
-          background: url(../image/item-panel-big.png) right center no-repeat; }
+          background: url(../image/item-panel-big.png) right center no-repeat;
+          min-height: 40px; }
           .menubar-panel > .menubar-panel-group .menubar-panel-content > .menubar-panel-content-group li > a.menubar-item.menubar-item-panel-big > .menubar-item-content {
             height: auto; }
             .menubar-panel > .menubar-panel-group .menubar-panel-content > .menubar-panel-content-group li > a.menubar-item.menubar-item-panel-big > .menubar-item-content > .menubar-item-icon {
@@ -163,7 +166,8 @@
         vertical-align: middle;
         border: none;
         width: 16px;
-        height: 16px; }
+        height: 16px;
+        display: inline-block; }
       .menubar-popup li > a.menubar-item > .menubar-item-content > .menubar-item-text {
         vertical-align: middle; }
   .menubar-popup li > a.menubar-item.arrows > .menubar-item-arrows {
@@ -188,7 +192,8 @@
     .menubar-popup li > a.menubar-item.menubar-item-panel-small > .menubar-item-content > .menubar-item-text {
       line-height: 16px; }
   .menubar-popup li > a.menubar-item.menubar-item-panel-big {
-    background: url(../image/item-panel-big.png) right center no-repeat; }
+    background: url(../image/item-panel-big.png) right center no-repeat;
+    min-height: 40px; }
     .menubar-popup li > a.menubar-item.menubar-item-panel-big > .menubar-item-content {
       height: auto; }
       .menubar-popup li > a.menubar-item.menubar-item-panel-big > .menubar-item-content > .menubar-item-icon {

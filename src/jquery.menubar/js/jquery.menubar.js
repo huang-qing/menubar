@@ -3,19 +3,18 @@
     // 创建工具栏项
     function createItem (item, type, index) {
         var text = item.text,
-            style = item.style,
+            style = item._style,
             arrows = item.children && item.children.length > 0,
-            iconUrl = item.icon.url || '',
             // ie8 class为关键字
-            iconClass = !iconUrl ? item.icon['class'] || '' : '',
+            icon = getItemIcon(item.icon, 'default', item.style),
             template;
 
         template = ['<a href="#" class="menubar-item ',
             'menubar-item-', style, (item.last ? ' menubar-item-' + style + '-last ' : ''),
             (arrows ? ' arrows ' : ''), '" data-index="', index, '">',
             '  <span class="menubar-item-content" >',
-            '       ', (iconUrl ? '<img class="menubar-item-icon" src="' + iconUrl + '"/>' : ''),
-            '       ', (iconClass ? '<span class="menubar-item-icon ' + iconClass + '"/>' : ''),
+            '       ', (icon.type === 'url' ? '<img class="menubar-item-icon" src="' + icon.value + '"/>' : ''),
+            '       ', (icon.type === 'sprite' ? '<span class="menubar-item-icon ' + icon.value + '"/>' : ''),
             '       <span class="menubar-item-text" >' + text + '</span>',
             '   </span>',
             '   ', (arrows ? '<span class="menubar-item-arrows ' + type + '" data-index="' + index + '" />' : ''),
@@ -24,6 +23,25 @@
 
         return template.join('');
     };
+
+    function getItemIcon (icon, state, size) {
+        var type = null,
+            value;
+
+        if (icon.url && icon.url[state]) {
+            value = icon.url[state][size];
+            type = 'url';
+        } else if (icon.sprite && icon.sprite[state]) {
+            value = icon.sprite[state][size];
+            type = 'sprite';
+        }
+
+        return {
+            type: type,
+            value: value
+        };
+    }
+
     // 创建面板菜单项
     function createPanelItem (item, index) {
         var type = 'menubar-item-in-panel';
@@ -36,18 +54,17 @@
         return createItem(item, type, index);
     };
     // 创建面板分组标题
-    function createPanelTitle (item) {
+    function createPanelTitle (item, index) {
         var text = item.text,
             arrows = item.children && item.children.length > 0,
-            iconUrl = item.icon.url || '',
-            iconClass = !iconUrl ? item.icon['class'] || '' : '',
+            icon = getItemIcon(item.icon, 'default', item.style),
             template;
 
         template = ['<p href="#" class="menubar-panel-title',
-            (arrows ? ' arrows ' : ''), '">',
+            (arrows ? ' arrows ' : ''), '" data-titleIndex="', index, '">',
             '  <span class="menubar-panel-title-content" >',
-            '       ', (iconUrl ? '<img class="menubar-panel-title-icon" src="' + iconUrl + '"/>' : ''),
-            '       ', (iconClass ? '<span class="menubar-panel-title-icon ' + iconClass + '"/>' : ''),
+            '       ', (icon.type === 'url' ? '<img class="menubar-panel-title-icon" src="' + icon.value + '"/>' : ''),
+            '       ', (icon.type === 'sprite' ? '<span class="menubar-panel-title-icon ' + icon.value + '"/>' : ''),
             '       <span class="menubar-panel-title-text" >' + text + '</span>',
             '   </span>',
             '   ', (arrows ? '<span class="menubar-panel-title-arrows" />' : ''),
@@ -80,19 +97,19 @@
                 items[i] = item;
 
                 if (item.style === 'big') {
-                    item.style = 'panel-' + item.style || '';
+                    item._style = 'panel-' + item.style || '';
                     // 大图标：放置一个
 
                     itemTemplate.push(createPanelContentItem(item, settings));
                 } else {
                     // 小图标：放置两个
-                    item.style = 'panel-' + item.style || '';
+                    item._style = 'panel-' + item.style || '';
                     itemTemplate.push(createPanelContentItem(item, settings));
 
                     nextItem = i + 1 < len ? $.extend(true, {}, defaultItem, items[i + 1]) : null;
                     if (nextItem && nextItem.style === 'small') {
                         ++i;
-                        nextItem.style = 'panel-' + nextItem.style || '';
+                        nextItem._style = 'panel-' + nextItem.style || '';
                         nextItem.last = i === len - 1;
                         items[i] = nextItem;
                         itemTemplate.push(createPanelContentItem(nextItem, settings));
@@ -118,8 +135,12 @@
                 var item = items[i],
                     children = item.children;
 
+                // 存储分组title信息
+                settings.itemsInPanelTitle.push(item);
+
+                item.style = 'big';
                 template.push('<div class="menubar-panel-group ', (i + 1 !== len ? 'menubar-panel-line' : ''), '" >');
-                template.push(createPanelTitle(item));
+                template.push(createPanelTitle(item, i));
                 template.push(createPanelContent(children, settings));
                 template.push('</div>');
             }
@@ -144,7 +165,7 @@
                 var item = $.extend(true, {}, defaultItem, items[i]),
                     itemTemplate;
 
-                item.style = 'popup-small';
+                item._style = 'popup-small';
                 itemTemplate = '<li>' + createPopupItem(item, i) + '</li>';
                 template.push(itemTemplate);
             }
@@ -527,6 +548,57 @@
         }
     });
 
+    $(document).on('mouseover mouseout', '.menubar', function (event) {
+        var target = $(event.target),
+            targetClassName = target.attr('class'),
+            regItem = /menubar-item-content|menubar-item-icon|menubar-item-text|menubar-item /,
+            regTitle = /menubar-panel-title/,
+            itemElem,
+            menubarElem,
+            menuId,
+            currentSettings,
+            item,
+            icon;
+
+        if (!regItem.test(targetClassName) && !regTitle.test(targetClassName)) {
+            return;
+        }
+
+        if (regItem.test(targetClassName)) {
+            itemElem = target.closest('.menubar-item');
+            menubarElem = itemElem.closest('.menubar');
+            menuId = menubarElem.attr('data-menuId');
+            currentSettings = settings[menuId];
+            item = getSelectItem(currentSettings, itemElem);
+        } else {
+            debugger;
+            itemElem = target.closest('.menubar-panel-title');
+            menubarElem = itemElem.closest('.menubar');
+            menuId = menubarElem.attr('data-menuId');
+            currentSettings = settings[menuId];
+            item = currentSettings.itemsInPanelTitle[parseInt(itemElem.attr('data-titleindex'))];
+        }
+
+        if (event.type === 'mouseover') {
+            icon = getItemIcon(item.icon, 'hover', item.style);
+        } else if (event.type === 'mouseout') {
+            icon = getItemIcon(item.icon, 'default', item.style);
+        }
+
+        // 指定的图片url
+        if (icon.type === 'url') {
+            itemElem.find('.menubar-item-icon,.menubar-panel-title-icon').attr('src', icon.value);
+        } else if (icon.type === 'sprite') {
+            // 雪碧图
+            icon = getItemIcon(item.icon, 'hover', item.style);
+            if (event.type === 'mouseover') {
+                itemElem.find('.menubar-item-icon,.menubar-panel-title-icon').addClass(icon.value);
+            } else if (event.type === 'mouseout') {
+                itemElem.find('.menubar-item-icon,.menubar-panel-title-icon').removeClass(icon.value);
+            }
+        }
+    });
+
     $(window).resize(function () {
         var _settings = settings,
             _setting;
@@ -556,6 +628,7 @@
                     id: id,
                     menubarElem: elem,
                     _settings: _settings,
+                    itemsInPanelTitle: [],
                     itemsInSubPopup: [],
                     itemsInPanelGroupPopup: [],
                     itemsInPanel: [],
