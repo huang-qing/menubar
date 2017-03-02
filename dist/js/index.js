@@ -2061,6 +2061,6 @@ var testPanelLayout = {
 //     }]
 // };
 
-$('#menubar').menubar(settings);
-$('#menubar-second').menubar(sencondSettings);
+// $('#menubar').menubar(settings);
+// $('#menubar-second').menubar(sencondSettings);
 $('#menubar-testPanelLayout').menubar(testPanelLayout);
