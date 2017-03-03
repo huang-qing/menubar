@@ -32,8 +32,8 @@ var settings = {
                         big: 'sprite-24-bom-default'
                     },
                     hover: {
-                        small: 'sprite-16-bom-hover',
-                        big: 'sprite-24-bom-hover'
+                        // small: 'sprite-16-bom-hover',
+                        // big: 'sprite-24-bom-hover'
                     }
                 },
                 url: {
@@ -42,8 +42,8 @@ var settings = {
                         big: '../image/bom16.png'
                     },
                     hover: {
-                        small: '../image/bom24.png',
-                        big: '../image/bom24.png'
+                        // small: '../image/bom24.png',
+                        // big: '../image/bom24.png'
                     }
                 }
             },
@@ -448,8 +448,8 @@ var settings = {
                         big: '../image/bom16.png'
                     },
                     hover: {
-                        small: '../image/bom24.png',
-                        big: '../image/bom24.png'
+                        // small: '../image/bom24.png',
+                        // big: '../image/bom24.png'
                     }
                 }
             },
@@ -470,8 +470,8 @@ var settings = {
                         big: 'sprite-24-bom-default'
                     },
                     hover: {
-                        small: 'sprite-16-bom-hover',
-                        big: 'sprite-24-bom-hover'
+                        // small: 'sprite-16-bom-hover',
+                        // big: 'sprite-24-bom-hover'
                     }
                 }
             },
