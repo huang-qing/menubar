@@ -1111,10 +1111,19 @@ var settings = {
         }],
         onclick: null
     }, {
-        text: '打印',
+        text: '打印1234',
         value: '',
         icon: {
-
+                url: {
+                    'default': {
+                        small: '../image/bom16.png',
+                        big: '../image/bom16.png'
+                    },
+                    hover: {
+                        // small: '../image/bom24.png',
+                        // big: '../image/bom24.png'
+                    }
+                }
         },
         // panel-big small popup-small
         style: 'small',
