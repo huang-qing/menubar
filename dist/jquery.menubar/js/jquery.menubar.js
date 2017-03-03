@@ -607,14 +607,14 @@
         }
 
         // 指定的图片url
-        if (icon.type === 'url') {
+        if (icon.type === 'url' && icon.value) {
             itemElem.find('.menubar-item-icon,.menubar-panel-title-icon').attr('src', icon.value);
         } else if (icon.type === 'sprite') {
             // 雪碧图
             icon = getItemIcon(item.icon, 'hover', item.style);
-            if (event.type === 'mouseover') {
+            if (event.type === 'mouseover' && icon.value) {
                 itemElem.find('.menubar-item-icon,.menubar-panel-title-icon').addClass(icon.value);
-            } else if (event.type === 'mouseout') {
+            } else if (event.type === 'mouseout' && icon.value) {
                 itemElem.find('.menubar-item-icon,.menubar-panel-title-icon').removeClass(icon.value);
             }
         }
