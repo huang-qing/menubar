@@ -3,6 +3,14 @@
     font-size: 12px;
 }
 
+.menubar a,
+.menubar span{
+    user-select: none; /* CSS3 (little to no support) */
+    -ms-user-select: none; /* IE 10+ */
+    -moz-user-select: none; /* Gecko (Firefox) */
+    -webkit-user-select: none; /* Webkit (Safari, Chrome) */
+}
+
 .menubar-panel {
     //padding: 4px 0 0 0;
     color: #333;
@@ -110,6 +118,8 @@
         }
         .menubar-panel-content {
             padding: 0;
+            height:auto;
+            text-align: left;
         }
     }
 }
@@ -128,6 +138,7 @@
     min-width: 8.5em;
     li {
         >a.menubar-item {
+            cursor:pointer;
             padding: 5px 18px 5px 16px;
             white-space: nowrap;
             &:hover {

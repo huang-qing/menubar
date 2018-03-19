@@ -3,6 +3,17 @@
   font-family: 微软雅黑;
   font-size: 12px; }
 
+.menubar a,
+.menubar span {
+  user-select: none;
+  /* CSS3 (little to no support) */
+  -ms-user-select: none;
+  /* IE 10+ */
+  -moz-user-select: none;
+  /* Gecko (Firefox) */
+  -webkit-user-select: none;
+  /* Webkit (Safari, Chrome) */ }
+
 .menubar-panel {
   color: #333;
   background: url(../image/bg.png) repeat-x left bottom;
@@ -142,7 +153,9 @@
       display: none; }
     .menubar-panel.menubar-panel-popup .menubar-panel-group .menubar-panel-content,
     .menubar-panel.menubar-panel-popup .menubar-panel-group.menubar-panel-line .menubar-panel-content {
-      padding: 0; }
+      padding: 0;
+      height: auto;
+      text-align: left; }
 
 .menubar-popup {
   list-style: none;
@@ -207,6 +220,7 @@
     .menubar-popup li > a.menubar-item.menubar-item-panel-big.menubar-item-panel-big-last {
       background: none; }
   .menubar-popup li > a.menubar-item {
+    cursor: pointer;
     padding: 5px 18px 5px 16px;
     white-space: nowrap;
     position: relative; }

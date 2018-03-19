@@ -186,6 +186,7 @@
 
     // 创建面板分组项弹出菜单
     function displayPanelGroupPopupMenu(target, menuId, panelGroupElem, currentSettings) {
+        debugger;
         var panelGroupElemOffset,
             panelPopup,
             itemsInPanelGroupPopup = currentSettings.itemsInPanelGroupPopup;
