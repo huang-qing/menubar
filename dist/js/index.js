@@ -172,12 +172,12 @@ var settings = {
                 }
             }
             ],
-            onclick: function (text, value, menuId) {
-                console.log('menubar item 打印1 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+            onclick: function (text, value, other) {
+                console.log('menubar item 打印1 test click:' + 'text:' + text + 'value:' + value + 'other:' + other);
             }
         }, {
             text: '打印2',
-            value: '',
+            value: 'print2',
             icon: {
                 sprite: {
                     'default': {
@@ -204,10 +204,13 @@ var settings = {
             style: 'small',
             colspan: 2,
             type: 'combobox',
+            onchange: function (text, value, other) {
+                console.log('menubar combobox item 打印2 test change:' + ' text:' + text + ' value:' + value + ' other:' + other);
+            },
             // defaultItem类型
             children: [{
                 text: '打印2-1',
-                value: '',
+                value: 'print 2-1',
                 icon: {
                     url: {
                         'default': {
