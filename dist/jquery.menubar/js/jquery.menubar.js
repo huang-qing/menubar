@@ -21,7 +21,7 @@
             template;
 
         if (!item.type || item.type === 'button') {
-            template = ['<a href="#" class="menubar-item menubar-item-type-button ',
+            template = ['<a href="" class="menubar-item menubar-item-type-button ',
                 'menubar-item-', style, (item.last ? ' menubar-item-' + style + '-last ' : ''),
                 (arrows ? ' arrows ' : ''), '" data-index="', index, '">',
                 '  <span class="menubar-item-content" >',
@@ -44,14 +44,15 @@
             template;
 
         if (item.type === 'combobox') {
-            template = ['<a href="#" class="menubar-item menubar-item-type-combobox ',
+            // 兼容ie，包裹在a标签下的input文本框类型不能正常使用
+            template = ['<span class="menubar-item menubar-item-type-combobox ',
                 'menubar-item-', style, (item.last ? ' menubar-item-' + style + '-last ' : ''),
                 (arrows ? ' arrows ' : ''), '" data-index="', index, '">',
                 '  <span class="menubar-item-content" >',
                 '       <input class="menubar-item-combobox" type="text" value="', text, '"/>',
                 '   </span>',
                 '   ', (arrows ? '<span class="menubar-item-arrows ' + type + '" data-index="' + index + '" />' : ''),
-                '</a>'
+                '</span>'
             ];
 
             return template.join('');
@@ -541,7 +542,7 @@
         var onchange = comboboxItem.onchange || onclickInMenu;
 
         comboboxItem.text = text;
-        comboboxElem.value = value;
+        comboboxItem.value = value;
         comboboxElem.val(text);
 
         if (typeof onchange === 'function') {
@@ -694,8 +695,10 @@
         }
     });
 
-    $(document).bind('change', '.menubar input.menubar-item-combobox', function (event) {
+    $(document).bind('change keyup', '.menubar input.menubar-item-combobox', function (event) {
         var target = $(event.target),
+            eventType = event.type,
+            keyCode = event.keyCode,
             itemElem = target.closest('.menubar-item'),
             menubarElem = itemElem.closest('.menubar'),
             menuId = menubarElem.attr('data-menuId'),
@@ -705,8 +708,11 @@
             value;
 
         value = target.val();
-        if (item.value !== value) {
-            itemChangeHandler(menubarElem, value, value, item, target, onchangeInMenu, currentSettings);
+        if (item.text !== value) {
+            // 兼容Ie，需要监测键盘回车事件
+            if (eventType === 'change' || (eventType === 'keyup' && keyCode === 13)) {
+                itemChangeHandler(menubarElem, value, value, item, target, onchangeInMenu, currentSettings);
+            }
         }
     });
 

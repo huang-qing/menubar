@@ -141,7 +141,7 @@
     display: none;
     min-width: 8.5em;
     li {
-        >a.menubar-item {
+        >.menubar-item {
             cursor:pointer;
             padding: 5px 18px 5px 16px;
             white-space: nowrap;
@@ -151,7 +151,7 @@
             position:relative;
             display: block;
         }
-        >a.menubar-item.arrows.menubar-item-popup-small {
+        >.menubar-item.arrows.menubar-item-popup-small {
             padding-right: 0;
             >.menubar-item-arrows.menubar-item-in-popup {
                 background: url('../image/arrows-right.png') no-repeat center center;

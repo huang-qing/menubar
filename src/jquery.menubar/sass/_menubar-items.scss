@@ -1,5 +1,5 @@
 li {
-    >a.menubar-item {
+    >.menubar-item {
         color: #333;
         text-decoration: none;
         padding: 5px 8px;
@@ -22,7 +22,7 @@ li {
         }
     }
 
-    >a.menubar-item.arrows {
+    >.menubar-item.arrows {
         >.menubar-item-arrows {
             display: table-cell;
         }
@@ -31,7 +31,7 @@ li {
         }
     }
 
-    >a.menubar-item.menubar-item-type-combobox.arrows {
+    >.menubar-item.menubar-item-type-combobox.arrows {
         position: relative;
         >.menubar-item-arrows{
             border:#E6E9ED 1px solid;
@@ -61,7 +61,7 @@ li {
     }
 
 
-    >a.menubar-item.arrows.menubar-item-panel-small {
+    >.menubar-item.arrows.menubar-item-panel-small {
         padding-right: 0;
         >.menubar-item-arrows.menubar-item-in-panel {
             width: 10px;
@@ -70,12 +70,12 @@ li {
             }
         }
     }
-    >a.menubar-item.arrows.menubar-item-panel-big {
+    >.menubar-item.arrows.menubar-item-panel-big {
         >.menubar-item-arrows.menubar-item-in-panel {
             width: 10px;
         }
     }
-    >a.menubar-item.menubar-item-panel-small {
+    >.menubar-item.menubar-item-panel-small {
         >.menubar-item-content {
             height: 16px;
             line-height: 16px;
@@ -90,7 +90,7 @@ li {
             }
         }
     }
-    >a.menubar-item.menubar-item-panel-big {
+    >.menubar-item.menubar-item-panel-big {
         background: url(../image/item-panel-big.png) right center no-repeat;
         min-height: 40px;
 
