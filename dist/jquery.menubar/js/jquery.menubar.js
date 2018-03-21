@@ -1,8 +1,18 @@
-(function($) {
+(function ($) {
     'use strict';
 
     // 创建工具栏项
     function createItem(item, type, index) {
+        var html = '';
+
+        html += createButtonItem(item, type, index) || '';
+
+        html += createComboboxItem(item, type, index) || '';
+
+        return html;
+    };
+
+    function createButtonItem(item, type, index) {
         var text = item.text,
             style = item._style,
             arrows = item.children && item.children.length > 0,
@@ -10,20 +20,43 @@
             icon = getItemIcon(item.icon, 'default', item.style),
             template;
 
-        template = ['<a href="#" class="menubar-item ',
-            'menubar-item-', style, (item.last ? ' menubar-item-' + style + '-last ' : ''),
-            (arrows ? ' arrows ' : ''), '" data-index="', index, '">',
-            '  <span class="menubar-item-content" >',
-            '       ', (icon.type === 'url' ? '<img class="menubar-item-icon" src="' + icon.value + '"/>' : ''),
-            '       ', (icon.type === 'sprite' ? '<span class="menubar-item-icon ' + icon.value + '"/>' : ''),
-            '       <span class="menubar-item-text" >' + text + '</span>',
-            '   </span>',
-            '   ', (arrows ? '<span class="menubar-item-arrows ' + type + '" data-index="' + index + '" />' : ''),
-            '</a>'
-        ];
+        if (!item.type || item.type === 'button') {
+            template = ['<a href="#" class="menubar-item menubar-item-type-button ',
+                'menubar-item-', style, (item.last ? ' menubar-item-' + style + '-last ' : ''),
+                (arrows ? ' arrows ' : ''), '" data-index="', index, '">',
+                '  <span class="menubar-item-content" >',
+                '       ', (icon.type === 'url' ? '<img class="menubar-item-icon" src="' + icon.value + '"/>' : ''),
+                '       ', (icon.type === 'sprite' ? '<span class="menubar-item-icon ' + icon.value + '"/>' : ''),
+                '       <span class="menubar-item-text" >' + text + '</span>',
+                '   </span>',
+                '   ', (arrows ? '<span class="menubar-item-arrows ' + type + '" data-index="' + index + '" />' : ''),
+                '</a>'
+            ];
 
-        return template.join('');
-    };
+            return template.join('');
+        }
+    }
+
+    function createComboboxItem(item, type, index) {
+        var text = item.text,
+            style = item._style,
+            arrows = item.children && item.children.length > 0,
+            template;
+
+        if (item.type === 'combobox') {
+            template = ['<a href="#" class="menubar-item menubar-item-type-combobox ',
+                'menubar-item-', style, (item.last ? ' menubar-item-' + style + '-last ' : ''),
+                (arrows ? ' arrows ' : ''), '" data-index="', index, '">',
+                '  <span class="menubar-item-content" >',
+                '       <input class="menubar-item-combobox" type="text" value="', text, '"/>',
+                '   </span>',
+                '   ', (arrows ? '<span class="menubar-item-arrows ' + type + '" data-index="' + index + '" />' : ''),
+                '</a>'
+            ];
+
+            return template.join('');
+        }
+    }
 
     function getItemIcon(icon, state, size) {
         var type = null,
@@ -78,11 +111,12 @@
     };
 
     // 创建面板分组菜单项
-    function createPanelContentItem(item, settings) {
+    function createPanelContentItem(item, settings, isInline) {
         var itemsInPanel = settings.itemsInPanel,
-            itemTemplate;
+            itemTemplate,
+            className = isInline ? 'class="menubar-item-container-inline"' : '';
 
-        itemTemplate = '<li>' + createPanelItem(item, itemsInPanel.length) + '</li>';
+        itemTemplate = '<li ' + className + '>' + createPanelItem(item, itemsInPanel.length) + '</li>';
         itemsInPanel.push(item);
 
         return itemTemplate;
@@ -96,6 +130,8 @@
             for (var i = 0, len = items.length; i < len; i++) {
                 var item = $.extend(true, {}, defaultItem, items[i]),
                     nextItem,
+                    nextCount = 1,
+                    isInline = false,
                     itemTemplate = ['<ul class="menubar-panel-content-group" >'];
 
                 item.last = i === len - 1;
@@ -104,23 +140,28 @@
                 if (item.style === 'big') {
                     item._style = 'panel-' + item.style || '';
                     // 大图标：放置一个
-
                     itemTemplate.push(createPanelContentItem(item, settings));
                 } else {
-                    // 小图标：放置两个
-                    item._style = 'panel-' + item.style || '';
+                    // 小图标：默认每组竖向放置两个
+                    item._style = 'panel-small';
                     itemTemplate.push(createPanelContentItem(item, settings));
-
-                    nextItem = i + 1 < len ? $.extend(true, {}, defaultItem, items[i + 1]) : null;
-                    if (nextItem && nextItem.style === 'small') {
-                        ++i;
-                        nextItem._style = 'panel-' + nextItem.style || '';
-                        nextItem.last = i === len - 1;
-                        items[i] = nextItem;
-                        itemTemplate.push(createPanelContentItem(nextItem, settings));
-                    } else {
-                        itemTemplate.push('<li class="menubar-item-small-empty"></li>');
+                    // 根据跨行的实际情况放置
+                    if (item.colspan && item.colspan > 1) {
+                        nextCount = item.colspan;
+                        isInline = true;
                     }
+                    do {
+                        nextItem = i + 1 < len ? $.extend(true, {}, defaultItem, items[i + 1]) : null;
+                        if (nextItem && nextItem.style === 'small') {
+                            ++i;
+                            nextItem._style = 'panel-small';
+                            nextItem.last = i === len - 1;
+                            items[i] = nextItem;
+                            itemTemplate.push(createPanelContentItem(nextItem, settings, isInline));
+                        } else {
+                            itemTemplate.push('<li class="menubar-item-small-empty"></li>');
+                        }
+                    } while (--nextCount);
                 }
 
                 itemTemplate.push('</ul>');
@@ -159,14 +200,14 @@
     function createMenu(elem, items, settings) {
         var html = createMenuPanel(items, settings),
             menubarPanel = $('<div class="menubar menubar-panel"></div>').attr('data-menuId', settings.id)
-            .append(html);
+                .append(html);
 
         elem.addClass('menubar-container').append(menubarPanel).append('<div class="menubar-division"></div>');
     };
 
     // 创建弹出菜单
-    function createSubPopupMenu(items, id) {
-        var template = ['<ul class="menubar menubar-popup" data-menuId="', id, '">'];
+    function createSubPopupMenu(parentItem, items, id) {
+        var template = ['<ul class="menubar menubar-popup menubar-popup-', parentItem.type, '" data-menuId="', id, '">'];
 
         if (items && items instanceof Array && items.length > 0) {
             for (var i = 0, len = items.length; i < len; i++) {
@@ -186,11 +227,11 @@
 
     // 创建面板分组项弹出菜单
     function displayPanelGroupPopupMenu(target, menuId, panelGroupElem, currentSettings) {
-        debugger;
         var panelGroupElemOffset,
             panelPopup,
             itemsInPanelGroupPopup = currentSettings.itemsInPanelGroupPopup;
 
+        target.addClass('menubar-panel-arrows-popup');
         panelPopup = $('<div class="menubar menubar-panel menubar-panel-popup" data-menuId="' + menuId + '" ></div>').append(panelGroupElem.closest('.menubar-panel-group').clone());
 
         panelPopup.find('.menubar-item-arrows').addClass('menubar-item-arrows-panel-group-popup');
@@ -208,17 +249,21 @@
             top: (panelGroupElemOffset.top + panelGroupElem.height()) + 'px',
             left: (panelGroupElemOffset.left - 2) + 'px'
         }).show();
+
+        layoutForBombobox(panelPopup);
     }
 
     // 销毁面板分组项弹出菜单
     function destroyPanelGroupPopupMenu(settings) {
         var popup,
+            parentArrows,
             popupList = settings.itemsInPanelGroupPopup;
 
         if (popupList && popupList.length > 0) {
             for (var len = popupList.length - 1, i = len; i >= 0; i--) {
                 var popupSettings = popupList[i];
-
+                parentArrows = popupSettings.parentArrows;
+                parentArrows.removeClass('menubar-panel-arrows-popup');
                 popup = popupSettings.popup;
                 popup.hide().unbind().remove();
                 popupList.pop();
@@ -239,7 +284,7 @@
         target.removeClass('menubar-item-arrows-hide').addClass('menubar-item-arrows-popup');
         popup = itemElem.find('>.menubar-popup');
         if (popup.length === 0) {
-            popup = $((createSubPopupMenu(item.children, settings.id)));
+            popup = $((createSubPopupMenu(item, item.children, settings.id)));
             itemsInSubPopup.push({
                 popup: popup,
                 parentItem: item,
@@ -251,6 +296,10 @@
         if (isPanelItem) {
             // 计算弹出位置
             relativeElem = target.parent();
+            if (relativeElem.hasClass('menubar-item-type-combobox')) {
+                relativeElem = relativeElem.find('input.menubar-item-combobox');
+                popup.width(relativeElem.outerWidth() - 2);
+            }
             offset = relativeElem.offset();
             // 在面板菜单中弹出的位置：下方
             position = {
@@ -267,14 +316,14 @@
         popup.css(position).show();
 
         // 绑定弹出菜单over、out事件，显示、隐藏下级菜单
-        popup.find('.menubar-item.menubar-item-popup-small.arrows').hover(function() {
+        popup.find('.menubar-item.menubar-item-popup-small.arrows').hover(function () {
             var elem = $(this),
                 target = elem.find('>.menubar-item-arrows'),
                 itemElem = target.closest('.menubar-item'),
                 item = getSelectItem(settings, itemElem);
 
             displaySubPopup(target, itemElem, item, false, settings, elem);
-        }, function() {
+        }, function () {
             var target = $(this).find('>.menubar-item-arrows'),
                 itemIndex = parseInt(target.attr('data-index'));
             destroySubPopup(settings, itemIndex);
@@ -344,7 +393,11 @@
             }
         }
 
-        return list[itemIndex];
+        if (list) {
+            return list[itemIndex];
+        } else {
+            return null;
+        }
     };
 
     // 创建menubar编号
@@ -354,8 +407,8 @@
 
     // 计算菜单面板各分组项的宽度
     function calculatePanelGroupsWidth(menubarElem, setting) {
-        setTimeout(function() {
-            menubarElem.find('.menubar-panel-group ').each(function() {
+        setTimeout(function () {
+            menubarElem.find('.menubar-panel-group ').each(function () {
                 calculatePanelGroupWidth($(this), setting, 'normal', null);
             });
 
@@ -411,6 +464,8 @@
             panelGroup,
             total;
 
+        destroyAllPopup(settings);
+
         // 重置panelGroup state 为 normal
         for (var len = panelGroups.length - 1, i = len; i >= 0; i--) {
             panelGroups[i].state = 'normal';
@@ -439,7 +494,7 @@
         }
 
         // 调整panelGroup布局样式
-        menubarElem.find('.menubar-panel-group').each(function(i) {
+        menubarElem.find('.menubar-panel-group').each(function (i) {
             var panelGroupElem = $(this),
                 panelGroup = panelGroups[i],
                 className = panelGroup.state === 'thumbnail' ? 'menubar-panel-group-thumbnail' : 'normal';
@@ -447,7 +502,29 @@
             if (!panelGroupElem.hasClass(className)) {
                 panelGroupElem.removeClass('normal').removeClass('menubar-panel-group-thumbnail').addClass(className);
             }
+
+            layoutForBombobox(panelGroupElem);
         });
+    }
+
+    function layoutForBombobox(panelGroupElem) {
+        var width,
+            combobox = panelGroupElem.find('.menubar-item-combobox').hide(),
+            comboboxItem = combobox.closest('.menubar-item'),
+            arrows = comboboxItem.find('.menubar-item-arrows'),
+            btnItem = panelGroupElem.find('.menubar-item-type-button:first');
+
+        if (combobox.length > 0) {
+            //hq
+            debugger;
+            if (_style['item-padding-left'] === null) {
+                _style['item-padding-left'] = parseInt(btnItem.css('padding-left'));
+                _style['item-padding-right'] = parseInt(btnItem.css('padding-right'));
+            }
+            width = combobox.closest('.menubar-panel-content-group').width() - (_style['item-padding-left'] * 2 + _style['item-padding-right']);
+            combobox.width(width).show();
+            arrows.show();
+        }
     }
 
     // 点击事件相关方法
@@ -463,13 +540,13 @@
 
     // 默认参数
     var defaults = {
-            // onclick: function (text, value) {
-            //     console.log('menubar click:' + ' text:' + text + ' value:' + value + ' menuId:' + menuId);
-            // },
-            onclick: null,
-            items: [],
-            autoLayout: true
-        },
+        // onclick: function (text, value) {
+        //     console.log('menubar click:' + ' text:' + text + ' value:' + value + ' menuId:' + menuId);
+        // },
+        onclick: null,
+        items: [],
+        autoLayout: true
+    },
         // 默认菜单项参数
         defaultItem = {
             text: '',
@@ -495,13 +572,19 @@
     //     settings: {}
     // };
 
+    var _style = {
+        'item-padding-left': null,
+        'item-padding-right': null
+    }
+
     // 绑定点击事件：全局绑定一次
-    $(document).bind('click', function(event) {
+    $(document).bind('click', function (event) {
         var target = $(event.target),
             targetClassName = target.attr('class'),
             regItem = /menubar-item-content|menubar-item-icon|menubar-item-text|menubar-item /,
             regArrows = /menubar-item-arrows/,
             regPopup = /menubar-item-arrows-popup/,
+            regPanelPopup = /menubar-panel-arrows-popup/,
             regItemInPanel = /menubar-item-panel/,
             regItemArrows = /arrows/,
             regTitleInPanel = /menubar-panel-title/,
@@ -519,13 +602,15 @@
 
         // 点击菜单面板缩略图模式，弹出面板
         if (regTitleInPanel.test(targetClassName) && (panelGroupElem = target.closest('.menubar-panel-group-thumbnail')) && panelGroupElem.length === 1) {
+            isPopup = regPanelPopup.test(targetClassName);
             destroyAllPopup(settings);
-            // 创建一个菜单面板当前所在分组的副本
-            menubarElem = panelGroupElem.closest('.menubar');
-            menuId = menubarElem.attr('data-menuId');
-            currentSettings = settings[menuId];
-
-            displayPanelGroupPopupMenu(target, menuId, panelGroupElem, currentSettings);
+            if (!isPopup) {
+                // 创建一个菜单面板当前所在分组的副本
+                menubarElem = panelGroupElem.closest('.menubar');
+                menuId = menubarElem.attr('data-menuId');
+                currentSettings = settings[menuId];
+                displayPanelGroupPopupMenu(target, menuId, panelGroupElem, currentSettings);
+            }
         } else if (regItem.test(targetClassName) || regArrows.test(targetClassName)) {
             // 正常菜单项点击
             itemElem = target.closest('.menubar-item');
@@ -554,13 +639,15 @@
             } else if (regArrows.test(targetClassName)) {
                 // 点击面板菜单下级菜单按钮
                 isPopup = regPopup.test(targetClassName);
-                if (!isPopup && isPanelItem) {
+                if ((!isPopup && isPanelItem) || (isPanelItem && isPopup)) {
                     if (!regPanelGroupPopup.test(targetClassName)) {
                         destroyAllPopup(settings);
                     } else {
                         destroySubPopup(currentSettings);
                     }
+                }
 
+                if (!isPopup && isPanelItem) {
                     displaySubPopup(target, itemElem, item, true, currentSettings, $('body'));
                 }
 
@@ -571,7 +658,7 @@
         }
     });
 
-    $(document).on('mouseover mouseout', '.menubar', function(event) {
+    $(document).on('mouseover mouseout', '.menubar', function (event) {
         var target = $(event.target),
             targetClassName = target.attr('class'),
             regItem = /menubar-item-content|menubar-item-icon|menubar-item-text|menubar-item /,
@@ -603,14 +690,14 @@
 
         if (event.type === 'mouseover') {
             icon = getItemIcon(item.icon, 'hover', item.style);
-        } else if (event.type === 'mouseout') {
+        } else if (event.type === 'mouseout' && item) {
             icon = getItemIcon(item.icon, 'default', item.style);
         }
 
         // 指定的图片url
-        if (icon.type === 'url' && icon.value) {
+        if (icon && icon.type === 'url' && icon.value) {
             itemElem.find('.menubar-item-icon,.menubar-panel-title-icon').attr('src', icon.value);
-        } else if (icon.type === 'sprite') {
+        } else if (icon && icon.type === 'sprite') {
             // 雪碧图
             icon = getItemIcon(item.icon, 'hover', item.style);
             if (event.type === 'mouseover' && icon.value) {
@@ -621,7 +708,7 @@
         }
     });
 
-    $(window).resize(function() {
+    $(window).resize(function () {
         var _settings = settings,
             _setting;
 
@@ -634,8 +721,8 @@
     });
     // api
     var methods = {
-        init: function(options) {
-            return this.each(function() {
+        init: function (options) {
+            return this.each(function () {
                 // 合并参数
                 var _settings = $.extend({}, defaults, options),
                     // 菜单数据
@@ -664,8 +751,8 @@
                 calculatePanelGroupsWidth(elem, newSettings);
             });
         },
-        destroy: function() {
-            return this.each(function() {
+        destroy: function () {
+            return this.each(function () {
                 var elem = $(this),
                     id = elem.find('>.menubar').attr('data-menuid'),
                     _settings = settings[id];
@@ -675,8 +762,8 @@
                 delete settings[id];
             });
         },
-        layout: function() {
-            return this.each(function() {
+        layout: function () {
+            return this.each(function () {
                 var elem = $(this),
                     id = elem.find('>.menubar').attr('data-menuid'),
                     currentSetting = settings[id];
@@ -687,7 +774,7 @@
     };
 
     // 创建菜单
-    jQuery.fn.menubar = function() {
+    jQuery.fn.menubar = function () {
         var method = arguments[0],
             arg = arguments;
 

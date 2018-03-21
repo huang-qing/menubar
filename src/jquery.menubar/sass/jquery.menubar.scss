@@ -63,6 +63,10 @@
                 margin: 0;
                 display: inline-block;
                 vertical-align: top;
+                text-align: left;
+                >.menubar-item-container-inline{
+                    display:inline-block
+                }
                 @import '_menubar-items'
             }
         }
@@ -145,6 +149,7 @@
                 background-color: #E6E9ED;
             }
             position:relative;
+            display: block;
         }
         >a.menubar-item.arrows.menubar-item-popup-small {
             padding-right: 0;
@@ -155,6 +160,11 @@
             }
         }
     }
+}
+
+.menubar-popup.menubar-popup-combobox {
+    margin-left:1px;
+    margin-top:4px;
 }
 
 .menubar-division {

@@ -3,7 +3,9 @@ li {
         color: #333;
         text-decoration: none;
         padding: 5px 8px;
-        display: block;
+        // display: block;
+        display: inline-block;
+        vertical-align: top;
         >.menubar-item-content {
             display: table-cell;
             >.menubar-item-icon {
@@ -19,6 +21,7 @@ li {
             }
         }
     }
+
     >a.menubar-item.arrows {
         >.menubar-item-arrows {
             display: table-cell;
@@ -27,6 +30,37 @@ li {
             background: url('../image/arrows-down.png') no-repeat center center;
         }
     }
+
+    >a.menubar-item.menubar-item-type-combobox.arrows {
+        position: relative;
+        >.menubar-item-arrows{
+            border:#E6E9ED 1px solid;
+            position: absolute;
+            top:5px;
+            bottom:5px;
+            right:0;
+            display: none;
+            &:hover{
+                background-color:#E6E9ED !important;
+                border: #7EB9F3 1px solid !important;
+            }
+        }
+
+        input.menubar-item-combobox
+        {
+            border:#E6E9ED 1px solid;
+            padding-left:5px;
+            padding-right:10px;
+            display:none;
+            color:#333;
+            &:focus{
+                outline: none;
+                border:#7EB9F3 1px solid;
+            }
+        }
+    }
+
+
     >a.menubar-item.arrows.menubar-item-panel-small {
         padding-right: 0;
         >.menubar-item-arrows.menubar-item-in-panel {

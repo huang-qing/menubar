@@ -51,127 +51,126 @@ var settings = {
             style: 'big',
             // defaultItem类型
             children: [{
-                    text: '打印1-1',
-                    value: '',
-                    icon: {
-                        sprite: {
-                            'default': {
-                                small: 'sprite-16-bom-default',
-                                big: 'sprite-24-bom-default'
-                            },
-                            hover: {
-                                small: 'sprite-16-bom-hover',
-                                big: 'sprite-24-bom-hover'
-                            }
+                text: '打印1-1',
+                value: '',
+                icon: {
+                    sprite: {
+                        'default': {
+                            small: 'sprite-16-bom-default',
+                            big: 'sprite-24-bom-default'
+                        },
+                        hover: {
+                            small: 'sprite-16-bom-hover',
+                            big: 'sprite-24-bom-hover'
                         }
-                    },
-                    // panel-big small popup-small
-                    style: 'small',
-                    // defaultItem类型
-                    children: [
-
-                    ],
-                    onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印1-1 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
                     }
-                }, {
-                    text: '打印1-2',
-                    value: '',
-                    icon: {
-                        sprite: {
-                            'default': {
-                                small: 'sprite-16-bom-default',
-                                big: 'sprite-24-bom-default'
-                            },
-                            hover: {
-                                small: 'sprite-16-bom-hover',
-                                big: 'sprite-24-bom-hover'
-                            }
-                        }
-                    },
-                    // panel-big small popup-small
-                    style: 'small',
-                    // defaultItem类型
-                    children: [
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
 
-                    ],
-                    onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印1-2 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                    }
-                }, {
-                    text: '打印1-3',
-                    value: '',
-                    icon: {
-                        url: {
-                            'default': {
-                                small: '../image/bom16.png',
-                                big: '../image/bom16.png'
-                            },
-                            hover: {
-                                small: '../image/bom24.png',
-                                big: '../image/bom24.png'
-                            }
-                        }
-                    },
-                    // panel-big small popup-small
-                    style: 'small',
-                    // defaultItem类型
-                    children: [
-
-                    ],
-                    onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印1-3 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                    }
-                }, {
-                    text: '打印1-4',
-                    value: '',
-                    icon: {
-                        url: {
-                            'default': {
-                                small: '../image/bom16.png',
-                                big: '../image/bom16.png'
-                            },
-                            hover: {
-                                small: '../image/bom24.png',
-                                big: '../image/bom24.png'
-                            }
-                        }
-                    },
-                    // panel-big small popup-small
-                    style: 'small',
-                    // defaultItem类型
-                    children: [
-
-                    ],
-                    onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印1-4 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                    }
-                }, {
-                    text: '打印1-5',
-                    value: '',
-                    icon: {
-                        url: {
-                            'default': {
-                                small: '../image/bom16.png',
-                                big: '../image/bom16.png'
-                            },
-                            hover: {
-                                small: '../image/bom24.png',
-                                big: '../image/bom24.png'
-                            }
-                        }
-                    },
-                    // panel-big small popup-small
-                    style: 'small',
-                    // defaultItem类型
-                    children: [
-
-                    ],
-                    onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印1-5 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                    }
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印1-1 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
                 }
+            }, {
+                text: '打印1-2',
+                value: '',
+                icon: {
+                    sprite: {
+                        'default': {
+                            small: 'sprite-16-bom-default',
+                            big: 'sprite-24-bom-default'
+                        },
+                        hover: {
+                            small: 'sprite-16-bom-hover',
+                            big: 'sprite-24-bom-hover'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
 
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印1-2 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }, {
+                text: '打印1-3',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印1-3 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }, {
+                text: '打印1-4',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印1-4 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }, {
+                text: '打印1-5',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印1-5 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }
             ],
             onclick: function (text, value, menuId) {
                 console.log('menubar item 打印1 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
@@ -203,19 +202,101 @@ var settings = {
             },
             // panel-big small popup-small
             style: 'small',
+            colspan: 2,
+            type: 'combobox',
             // defaultItem类型
             children: [{
-                    text: '打印2-1',
+                text: '打印2-1',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印2-1 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }, {
+                text: '打印2-2',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印2-2 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }, {
+                text: '打印2-3',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印2-3 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }, {
+                text: '打印2-4',
+                value: '',
+                icon: {
+                    url: '../image/bom16.png',
+                    class: '../'
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [{
+                    text: '打印2-4-1',
                     value: '',
                     icon: {
-                        url: {
+                        sprite: {
                             'default': {
-                                small: '../image/bom16.png',
-                                big: '../image/bom16.png'
+                                small: 'sprite-16-bom-default',
+                                big: 'sprite-24-bom-default'
                             },
                             hover: {
-                                small: '../image/bom24.png',
-                                big: '../image/bom24.png'
+                                small: 'sprite-16-bom-hover',
+                                big: 'sprite-24-bom-hover'
                             }
                         }
                     },
@@ -224,192 +305,10 @@ var settings = {
                     // defaultItem类型
                     children: [],
                     onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印2-1 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                        console.log('menubar item 打印2-4-1 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
                     }
                 }, {
-                    text: '打印2-2',
-                    value: '',
-                    icon: {
-                        url: {
-                            'default': {
-                                small: '../image/bom16.png',
-                                big: '../image/bom16.png'
-                            },
-                            hover: {
-                                small: '../image/bom24.png',
-                                big: '../image/bom24.png'
-                            }
-                        }
-                    },
-                    // panel-big small popup-small
-                    style: 'small',
-                    // defaultItem类型
-                    children: [
-
-                    ],
-                    onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印2-2 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                    }
-                }, {
-                    text: '打印2-3',
-                    value: '',
-                    icon: {
-                        url: {
-                            'default': {
-                                small: '../image/bom16.png',
-                                big: '../image/bom16.png'
-                            },
-                            hover: {
-                                small: '../image/bom24.png',
-                                big: '../image/bom24.png'
-                            }
-                        }
-                    },
-                    // panel-big small popup-small
-                    style: 'small',
-                    // defaultItem类型
-                    children: [
-
-                    ],
-                    onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印2-3 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                    }
-                }, {
-                    text: '打印2-4',
-                    value: '',
-                    icon: {
-                        url: '../image/bom16.png',
-                        class: '../'
-                    },
-                    // panel-big small popup-small
-                    style: 'small',
-                    // defaultItem类型
-                    children: [{
-                            text: '打印2-4-1',
-                            value: '',
-                            icon: {
-                                sprite: {
-                                    'default': {
-                                        small: 'sprite-16-bom-default',
-                                        big: 'sprite-24-bom-default'
-                                    },
-                                    hover: {
-                                        small: 'sprite-16-bom-hover',
-                                        big: 'sprite-24-bom-hover'
-                                    }
-                                }
-                            },
-                            // panel-big small popup-small
-                            style: 'small',
-                            // defaultItem类型
-                            children: [],
-                            onclick: function (text, value, menuId) {
-                                console.log('menubar item 打印2-4-1 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                            }
-                        }, {
-                            text: '打印2-4-2',
-                            value: '',
-                            icon: {
-                                sprite: {
-                                    'default': {
-                                        small: 'sprite-16-bom-default',
-                                        big: 'sprite-24-bom-default'
-                                    },
-                                    hover: {
-                                        small: 'sprite-16-bom-hover',
-                                        big: 'sprite-24-bom-hover'
-                                    }
-                                }
-                            },
-                            // panel-big small popup-small
-                            style: 'small',
-                            // defaultItem类型
-                            children: [
-
-                            ],
-                            onclick: function (text, value, menuId) {
-                                console.log('menubar item 打印2-4-2 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                            }
-                        }, {
-                            text: '打印2-4-3',
-                            value: '',
-                            icon: {
-                                sprite: {
-                                    'default': {
-                                        small: 'sprite-16-bom-default',
-                                        big: 'sprite-24-bom-default'
-                                    },
-                                    hover: {
-                                        small: 'sprite-16-bom-hover',
-                                        big: 'sprite-24-bom-hover'
-                                    }
-                                }
-                            },
-                            // panel-big small popup-small
-                            style: 'small',
-                            // defaultItem类型
-                            children: [
-
-                            ],
-                            onclick: function (text, value, menuId) {
-                                console.log('menubar item 打印2-4-3 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                            }
-                        }, {
-                            text: '打印2-4-4',
-                            value: '',
-                            icon: {
-                                sprite: {
-                                    'default': {
-                                        small: 'sprite-16-bom-default',
-                                        big: 'sprite-24-bom-default'
-                                    },
-                                    hover: {
-                                        small: 'sprite-16-bom-hover',
-                                        big: 'sprite-24-bom-hover'
-                                    }
-                                }
-                            },
-                            // panel-big small popup-small
-                            style: 'small',
-                            // defaultItem类型
-                            children: [
-
-                            ],
-                            onclick: function (text, value, menuId) {
-                                console.log('menubar item 打印2-4-4 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                            }
-                        }, {
-                            text: '打印2-4-5',
-                            value: '',
-                            icon: {
-                                sprite: {
-                                    'default': {
-                                        small: 'sprite-16-bom-default',
-                                        big: 'sprite-24-bom-default'
-                                    },
-                                    hover: {
-                                        small: 'sprite-16-bom-hover',
-                                        big: 'sprite-24-bom-hover'
-                                    }
-                                }
-                            },
-                            // panel-big small popup-small
-                            style: 'small',
-                            // defaultItem类型
-                            children: [
-
-                            ],
-                            onclick: function (text, value, menuId) {
-                                console.log('menubar item 打印2-4-5 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                            }
-                        }
-
-                    ],
-                    onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印2-4 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                    }
-                }, {
-                    text: '打印2-5',
+                    text: '打印2-4-2',
                     value: '',
                     icon: {
                         sprite: {
@@ -430,16 +329,118 @@ var settings = {
 
                     ],
                     onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印2-5 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                        console.log('menubar item 打印2-4-2 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                    }
+                }, {
+                    text: '打印2-4-3',
+                    value: '',
+                    icon: {
+                        sprite: {
+                            'default': {
+                                small: 'sprite-16-bom-default',
+                                big: 'sprite-24-bom-default'
+                            },
+                            hover: {
+                                small: 'sprite-16-bom-hover',
+                                big: 'sprite-24-bom-hover'
+                            }
+                        }
+                    },
+                    // panel-big small popup-small
+                    style: 'small',
+                    // defaultItem类型
+                    children: [
+
+                    ],
+                    onclick: function (text, value, menuId) {
+                        console.log('menubar item 打印2-4-3 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                    }
+                }, {
+                    text: '打印2-4-4',
+                    value: '',
+                    icon: {
+                        sprite: {
+                            'default': {
+                                small: 'sprite-16-bom-default',
+                                big: 'sprite-24-bom-default'
+                            },
+                            hover: {
+                                small: 'sprite-16-bom-hover',
+                                big: 'sprite-24-bom-hover'
+                            }
+                        }
+                    },
+                    // panel-big small popup-small
+                    style: 'small',
+                    // defaultItem类型
+                    children: [
+
+                    ],
+                    onclick: function (text, value, menuId) {
+                        console.log('menubar item 打印2-4-4 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                    }
+                }, {
+                    text: '打印2-4-5',
+                    value: '',
+                    icon: {
+                        sprite: {
+                            'default': {
+                                small: 'sprite-16-bom-default',
+                                big: 'sprite-24-bom-default'
+                            },
+                            hover: {
+                                small: 'sprite-16-bom-hover',
+                                big: 'sprite-24-bom-hover'
+                            }
+                        }
+                    },
+                    // panel-big small popup-small
+                    style: 'small',
+                    // defaultItem类型
+                    children: [
+
+                    ],
+                    onclick: function (text, value, menuId) {
+                        console.log('menubar item 打印2-4-5 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
                     }
                 }
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印2-4 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }, {
+                text: '打印2-5',
+                value: '',
+                icon: {
+                    sprite: {
+                        'default': {
+                            small: 'sprite-16-bom-default',
+                            big: 'sprite-24-bom-default'
+                        },
+                        hover: {
+                            small: 'sprite-16-bom-hover',
+                            big: 'sprite-24-bom-hover'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印2-5 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }
 
             ],
             onclick: function (text, value, menuId) {
                 console.log('menubar item 打印2 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
             }
         }, {
-            text: '打印',
+            text: '打印3',
             value: '',
             icon: {
                 url: {
@@ -461,7 +462,7 @@ var settings = {
             ],
             onclick: null
         }, {
-            text: '打印',
+            text: '打印4',
             value: '',
             icon: {
                 sprite: {
@@ -483,7 +484,7 @@ var settings = {
             ],
             onclick: null
         }, {
-            text: '打印',
+            text: '打印5',
             value: '',
             icon: {
                 sprite: {
@@ -505,7 +506,7 @@ var settings = {
             ],
             onclick: null
         }, {
-            text: '打印',
+            text: '打印6',
             value: '',
             icon: {
                 url: '../image/bom16.png',
@@ -1114,16 +1115,16 @@ var settings = {
         text: '打印1234',
         value: '',
         icon: {
-                url: {
-                    'default': {
-                        small: '../image/bom16.png',
-                        big: '../image/bom16.png'
-                    },
-                    hover: {
-                        // small: '../image/bom24.png',
-                        // big: '../image/bom24.png'
-                    }
+            url: {
+                'default': {
+                    small: '../image/bom16.png',
+                    big: '../image/bom16.png'
+                },
+                hover: {
+                    // small: '../image/bom24.png',
+                    // big: '../image/bom24.png'
                 }
+            }
         },
         // panel-big small popup-small
         style: 'small',
@@ -1265,124 +1266,124 @@ var testPanelLayout = {
             style: 'big',
             // defaultItem类型
             children: [{
-                    text: '打印1-1',
-                    value: '',
-                    icon: {
-                        sprite: {
-                            'default': {
-                                small: 'sprite-16-bom-default',
-                                big: 'sprite-24-bom-default'
-                            },
-                            hover: {
-                                small: 'sprite-16-bom-hover',
-                                big: 'sprite-24-bom-hover'
-                            }
+                text: '打印1-1',
+                value: '',
+                icon: {
+                    sprite: {
+                        'default': {
+                            small: 'sprite-16-bom-default',
+                            big: 'sprite-24-bom-default'
+                        },
+                        hover: {
+                            small: 'sprite-16-bom-hover',
+                            big: 'sprite-24-bom-hover'
                         }
-                    },
-                    // panel-big small popup-small
-                    style: 'small',
-                    // defaultItem类型
-                    children: [],
-                    onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印1-1 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
                     }
-                }, {
-                    text: '打印1-2',
-                    value: '',
-                    icon: {
-                        url: {
-                            'default': {
-                                small: '../image/bom16.png',
-                                big: '../image/bom16.png'
-                            },
-                            hover: {
-                                small: '../image/bom24.png',
-                                big: '../image/bom24.png'
-                            }
-                        }
-                    },
-                    // panel-big small popup-small
-                    style: 'small',
-                    // defaultItem类型
-                    children: [
-
-                    ],
-                    onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印1-2 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                    }
-                }, {
-                    text: '打印1-3',
-                    value: '',
-                    icon: {
-                        url: {
-                            'default': {
-                                small: '../image/bom16.png',
-                                big: '../image/bom16.png'
-                            },
-                            hover: {
-                                small: '../image/bom24.png',
-                                big: '../image/bom24.png'
-                            }
-                        }
-                    },
-                    // panel-big small popup-small
-                    style: 'small',
-                    // defaultItem类型
-                    children: [
-
-                    ],
-                    onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印1-3 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                    }
-                }, {
-                    text: '打印1-4',
-                    value: '',
-                    icon: {
-                        url: {
-                            'default': {
-                                small: '../image/bom16.png',
-                                big: '../image/bom16.png'
-                            },
-                            hover: {
-                                small: '../image/bom24.png',
-                                big: '../image/bom24.png'
-                            }
-                        }
-                    },
-                    // panel-big small popup-small
-                    style: 'small',
-                    // defaultItem类型
-                    children: [
-
-                    ],
-                    onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印1-4 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                    }
-                }, {
-                    text: '打印1-5',
-                    value: '',
-                    icon: {
-                        url: {
-                            'default': {
-                                small: '../image/bom16.png',
-                                big: '../image/bom16.png'
-                            },
-                            hover: {
-                                small: '../image/bom24.png',
-                                big: '../image/bom24.png'
-                            }
-                        }
-                    },
-                    // panel-big small popup-small
-                    style: 'small',
-                    // defaultItem类型
-                    children: [
-
-                    ],
-                    onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印1-5 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印1-1 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
                 }
+            }, {
+                text: '打印1-2',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印1-2 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }, {
+                text: '打印1-3',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印1-3 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }, {
+                text: '打印1-4',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印1-4 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }, {
+                text: '打印1-5',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印1-5 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }
 
             ],
             onclick: function (text, value, menuId) {
@@ -1407,7 +1408,95 @@ var testPanelLayout = {
             style: 'small',
             // defaultItem类型
             children: [{
-                    text: '打印2-1',
+                text: '打印2-1',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印2-1 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }, {
+                text: '打印2-2',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印2-2 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }, {
+                text: '打印2-3',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印2-3 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }, {
+                text: '打印2-4',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [{
+                    text: '打印2-4-1',
                     value: '',
                     icon: {
                         url: {
@@ -1426,10 +1515,10 @@ var testPanelLayout = {
                     // defaultItem类型
                     children: [],
                     onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印2-1 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                        console.log('menubar item 打印2-4-1 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
                     }
                 }, {
-                    text: '打印2-2',
+                    text: '打印2-4-2',
                     value: '',
                     icon: {
                         url: {
@@ -1450,10 +1539,10 @@ var testPanelLayout = {
 
                     ],
                     onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印2-2 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                        console.log('menubar item 打印2-4-2 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
                     }
                 }, {
-                    text: '打印2-3',
+                    text: '打印2-4-3',
                     value: '',
                     icon: {
                         url: {
@@ -1474,152 +1563,10 @@ var testPanelLayout = {
 
                     ],
                     onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印2-3 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                        console.log('menubar item 打印2-4-3 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
                     }
                 }, {
-                    text: '打印2-4',
-                    value: '',
-                    icon: {
-                        url: {
-                            'default': {
-                                small: '../image/bom16.png',
-                                big: '../image/bom16.png'
-                            },
-                            hover: {
-                                small: '../image/bom24.png',
-                                big: '../image/bom24.png'
-                            }
-                        }
-                    },
-                    // panel-big small popup-small
-                    style: 'small',
-                    // defaultItem类型
-                    children: [{
-                            text: '打印2-4-1',
-                            value: '',
-                            icon: {
-                                url: {
-                                    'default': {
-                                        small: '../image/bom16.png',
-                                        big: '../image/bom16.png'
-                                    },
-                                    hover: {
-                                        small: '../image/bom24.png',
-                                        big: '../image/bom24.png'
-                                    }
-                                }
-                            },
-                            // panel-big small popup-small
-                            style: 'small',
-                            // defaultItem类型
-                            children: [],
-                            onclick: function (text, value, menuId) {
-                                console.log('menubar item 打印2-4-1 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                            }
-                        }, {
-                            text: '打印2-4-2',
-                            value: '',
-                            icon: {
-                                url: {
-                                    'default': {
-                                        small: '../image/bom16.png',
-                                        big: '../image/bom16.png'
-                                    },
-                                    hover: {
-                                        small: '../image/bom24.png',
-                                        big: '../image/bom24.png'
-                                    }
-                                }
-                            },
-                            // panel-big small popup-small
-                            style: 'small',
-                            // defaultItem类型
-                            children: [
-
-                            ],
-                            onclick: function (text, value, menuId) {
-                                console.log('menubar item 打印2-4-2 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                            }
-                        }, {
-                            text: '打印2-4-3',
-                            value: '',
-                            icon: {
-                                url: {
-                                    'default': {
-                                        small: '../image/bom16.png',
-                                        big: '../image/bom16.png'
-                                    },
-                                    hover: {
-                                        small: '../image/bom24.png',
-                                        big: '../image/bom24.png'
-                                    }
-                                }
-                            },
-                            // panel-big small popup-small
-                            style: 'small',
-                            // defaultItem类型
-                            children: [
-
-                            ],
-                            onclick: function (text, value, menuId) {
-                                console.log('menubar item 打印2-4-3 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                            }
-                        }, {
-                            text: '打印2-4-4',
-                            value: '',
-                            icon: {
-                                url: {
-                                    'default': {
-                                        small: '../image/bom16.png',
-                                        big: '../image/bom16.png'
-                                    },
-                                    hover: {
-                                        small: '../image/bom24.png',
-                                        big: '../image/bom24.png'
-                                    }
-                                }
-                            },
-                            // panel-big small popup-small
-                            style: 'small',
-                            // defaultItem类型
-                            children: [
-
-                            ],
-                            onclick: function (text, value, menuId) {
-                                console.log('menubar item 打印2-4-4 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                            }
-                        }, {
-                            text: '打印2-4-5',
-                            value: '',
-                            icon: {
-                                url: {
-                                    'default': {
-                                        small: '../image/bom16.png',
-                                        big: '../image/bom16.png'
-                                    },
-                                    hover: {
-                                        small: '../image/bom24.png',
-                                        big: '../image/bom24.png'
-                                    }
-                                }
-                            },
-                            // panel-big small popup-small
-                            style: 'small',
-                            // defaultItem类型
-                            children: [
-
-                            ],
-                            onclick: function (text, value, menuId) {
-                                console.log('menubar item 打印2-4-5 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                            }
-                        }
-
-                    ],
-                    onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印2-4 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
-                    }
-                }, {
-                    text: '打印2-5',
+                    text: '打印2-4-4',
                     value: '',
                     icon: {
                         url: {
@@ -1640,9 +1587,63 @@ var testPanelLayout = {
 
                     ],
                     onclick: function (text, value, menuId) {
-                        console.log('menubar item 打印2-5 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                        console.log('menubar item 打印2-4-4 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                    }
+                }, {
+                    text: '打印2-4-5',
+                    value: '',
+                    icon: {
+                        url: {
+                            'default': {
+                                small: '../image/bom16.png',
+                                big: '../image/bom16.png'
+                            },
+                            hover: {
+                                small: '../image/bom24.png',
+                                big: '../image/bom24.png'
+                            }
+                        }
+                    },
+                    // panel-big small popup-small
+                    style: 'small',
+                    // defaultItem类型
+                    children: [
+
+                    ],
+                    onclick: function (text, value, menuId) {
+                        console.log('menubar item 打印2-4-5 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
                     }
                 }
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印2-4 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }, {
+                text: '打印2-5',
+                value: '',
+                icon: {
+                    url: {
+                        'default': {
+                            small: '../image/bom16.png',
+                            big: '../image/bom16.png'
+                        },
+                        hover: {
+                            small: '../image/bom24.png',
+                            big: '../image/bom24.png'
+                        }
+                    }
+                },
+                // panel-big small popup-small
+                style: 'small',
+                // defaultItem类型
+                children: [
+
+                ],
+                onclick: function (text, value, menuId) {
+                    console.log('menubar item 打印2-5 test click:' + 'text:' + text + 'value:' + value + 'menuId:' + menuId);
+                }
+            }
 
             ],
             onclick: function (text, value, menuId) {
@@ -2051,24 +2052,6 @@ var testPanelLayout = {
     }]
 
 };
-
-// var option = {
-//     onclick: function (text, value, menuId) {
-//         console.log('menubar click test');
-//     },
-//     items: [{
-//         text: '编辑1',
-//         value: '',
-//         icon: {
-//             url: '../image/bom16.png',
-//             class: '../'
-//         },
-//         // panel-big small popup-small
-//         style: 'small',
-//         // defaultItem类型
-//         children: []
-//     }]
-// };
 
 $('#menubar').menubar(settings);
 $('#menubar-second').menubar(sencondSettings);
