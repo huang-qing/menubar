@@ -593,172 +593,172 @@
     }
 
     // 绑定点击事件：全局绑定一次
-    // $(document).bind('click', function (event) {
-    //     var target = $(event.target),
-    //         targetClassName = target.attr('class'),
-    //         regItem = /menubar-item-content|menubar-item-icon|menubar-item-text|menubar-item /,
-    //         regArrows = /menubar-item-arrows/,
-    //         regPopup = /menubar-item-arrows-popup/,
-    //         regPanelPopup = /menubar-panel-arrows-popup/,
-    //         regItemInPanel = /menubar-item-panel/,
-    //         regItemArrows = /arrows/,
-    //         regTitleInPanel = /menubar-panel-title/,
-    //         regPanelGroupPopup = /menubar-item-arrows-panel-group-popup/,
-    //         regComboboxPopup = /menubar-popup-combobox/,
-    //         itemElem,
-    //         itemClassName,
-    //         isPopup,
-    //         isComboboxPopup,
-    //         isPanelItem,
-    //         comboboxTopPopup,
-    //         combobox,
-    //         comboboxItem,
-    //         comboboxElem,
-    //         item,
-    //         menuId,
-    //         currentSettings,
-    //         onclickInMenu,
-    //         onchangeInMenu,
-    //         menubarElem,
-    //         panelGroupElem;
+    $(document).bind('click', function (event) {
+        var target = $(event.target),
+            targetClassName = target.attr('class'),
+            regItem = /menubar-item-content|menubar-item-icon|menubar-item-text|menubar-item /,
+            regArrows = /menubar-item-arrows/,
+            regPopup = /menubar-item-arrows-popup/,
+            regPanelPopup = /menubar-panel-arrows-popup/,
+            regItemInPanel = /menubar-item-panel/,
+            regItemArrows = /arrows/,
+            regTitleInPanel = /menubar-panel-title/,
+            regPanelGroupPopup = /menubar-item-arrows-panel-group-popup/,
+            regComboboxPopup = /menubar-popup-combobox/,
+            itemElem,
+            itemClassName,
+            isPopup,
+            isComboboxPopup,
+            isPanelItem,
+            comboboxTopPopup,
+            combobox,
+            comboboxItem,
+            comboboxElem,
+            item,
+            menuId,
+            currentSettings,
+            onclickInMenu,
+            onchangeInMenu,
+            menubarElem,
+            panelGroupElem;
 
-    //     // 点击菜单面板缩略图模式，弹出面板
-    //     if (regTitleInPanel.test(targetClassName) && (panelGroupElem = target.closest('.menubar-panel-group-thumbnail')) && panelGroupElem.length === 1) {
-    //         isPopup = regPanelPopup.test(targetClassName);
-    //         destroyAllPopup(settings);
-    //         if (!isPopup) {
-    //             // 创建一个菜单面板当前所在分组的副本
-    //             menubarElem = panelGroupElem.closest('.menubar');
-    //             menuId = menubarElem.attr('data-menuId');
-    //             currentSettings = settings[menuId];
-    //             displayPanelGroupPopupMenu(target, menuId, panelGroupElem, currentSettings);
-    //         }
-    //     } else if (regItem.test(targetClassName) || regArrows.test(targetClassName)) {
-    //         // 正常菜单项点击
-    //         itemElem = target.closest('.menubar-item');
-    //         itemClassName = itemElem.attr('class');
-    //         menubarElem = itemElem.closest('.menubar');
-    //         menuId = menubarElem.attr('data-menuId');
-    //         currentSettings = settings[menuId];
-    //         onclickInMenu = currentSettings._settings.onclick;
-    //         onchangeInMenu = currentSettings._settings.onchange;
-    //         isPanelItem = regItemInPanel.test(itemClassName);
+        // 点击菜单面板缩略图模式，弹出面板
+        if (regTitleInPanel.test(targetClassName) && (panelGroupElem = target.closest('.menubar-panel-group-thumbnail')) && panelGroupElem.length === 1) {
+            isPopup = regPanelPopup.test(targetClassName);
+            destroyAllPopup(settings);
+            if (!isPopup) {
+                // 创建一个菜单面板当前所在分组的副本
+                menubarElem = panelGroupElem.closest('.menubar');
+                menuId = menubarElem.attr('data-menuId');
+                currentSettings = settings[menuId];
+                displayPanelGroupPopupMenu(target, menuId, panelGroupElem, currentSettings);
+            }
+        } else if (regItem.test(targetClassName) || regArrows.test(targetClassName)) {
+            // 正常菜单项点击
+            itemElem = target.closest('.menubar-item');
+            itemClassName = itemElem.attr('class');
+            menubarElem = itemElem.closest('.menubar');
+            menuId = menubarElem.attr('data-menuId');
+            currentSettings = settings[menuId];
+            onclickInMenu = currentSettings._settings.onclick;
+            onchangeInMenu = currentSettings._settings.onchange;
+            isPanelItem = regItemInPanel.test(itemClassName);
 
-    //         // 点击菜单项内容，执行函数
-    //         item = getSelectItem(currentSettings, itemElem);
-    //         // 点击菜单项内容，执行函数
-    //         if (regItem.test(targetClassName)) {
-    //             // 弹出菜单项,存在下级菜单，不执行
-    //             if (!isPanelItem) {
-    //                 if (regItemArrows.test(itemClassName)) {
-    //                     return false;
-    //                 }
-    //             }
+            // 点击菜单项内容，执行函数
+            item = getSelectItem(currentSettings, itemElem);
+            // 点击菜单项内容，执行函数
+            if (regItem.test(targetClassName)) {
+                // 弹出菜单项,存在下级菜单，不执行
+                if (!isPanelItem) {
+                    if (regItemArrows.test(itemClassName)) {
+                        return false;
+                    }
+                }
 
-    //             comboboxTopPopup = itemElem.closest('.menubar-popup-combobox');
-    //             isComboboxPopup = regComboboxPopup.test(comboboxTopPopup.attr('class'));
-    //             if (isComboboxPopup) {
-    //                 combobox = currentSettings.itemsInSubPopup[0];
-    //                 if (combobox) {
-    //                     comboboxItem = combobox.parentItem;
-    //                     comboboxElem = combobox.parentArrows.parent().find('input.menubar-item-combobox');
-    //                     itemChangeHandler(currentSettings.menubarElem, item.text, item.value, comboboxItem, comboboxElem, onchangeInMenu, currentSettings);
-    //                 }
-    //             } else {
-    //                 itemClickHandler(currentSettings.menubarElem, item, onclickInMenu, currentSettings);
-    //             }
+                comboboxTopPopup = itemElem.closest('.menubar-popup-combobox');
+                isComboboxPopup = regComboboxPopup.test(comboboxTopPopup.attr('class'));
+                if (isComboboxPopup) {
+                    combobox = currentSettings.itemsInSubPopup[0];
+                    if (combobox) {
+                        comboboxItem = combobox.parentItem;
+                        comboboxElem = combobox.parentArrows.parent().find('input.menubar-item-combobox');
+                        itemChangeHandler(currentSettings.menubarElem, item.text, item.value, comboboxItem, comboboxElem, onchangeInMenu, currentSettings);
+                    }
+                } else {
+                    itemClickHandler(currentSettings.menubarElem, item, onclickInMenu, currentSettings);
+                }
 
-    //             destroyAllPopup(settings);
+                destroyAllPopup(settings);
 
-    //             return false;
-    //         } else if (regArrows.test(targetClassName)) {
-    //             // 点击面板菜单下级菜单按钮
-    //             isPopup = regPopup.test(targetClassName);
-    //             if ((!isPopup && isPanelItem) || (isPanelItem && isPopup)) {
-    //                 if (!regPanelGroupPopup.test(targetClassName)) {
-    //                     destroyAllPopup(settings);
-    //                 } else {
-    //                     destroySubPopup(currentSettings);
-    //                 }
-    //             }
+                return false;
+            } else if (regArrows.test(targetClassName)) {
+                // 点击面板菜单下级菜单按钮
+                isPopup = regPopup.test(targetClassName);
+                if ((!isPopup && isPanelItem) || (isPanelItem && isPopup)) {
+                    if (!regPanelGroupPopup.test(targetClassName)) {
+                        destroyAllPopup(settings);
+                    } else {
+                        destroySubPopup(currentSettings);
+                    }
+                }
 
-    //             if (!isPopup && isPanelItem) {
-    //                 displaySubPopup(target, itemElem, item, true, currentSettings, $('body'));
-    //             }
+                if (!isPopup && isPanelItem) {
+                    displaySubPopup(target, itemElem, item, true, currentSettings, $('body'));
+                }
 
-    //             return false;
-    //         }
-    //     } else {
-    //         destroyAllPopup(settings);
-    //         return true;
-    //     }
-    // });
+                return false;
+            }
+        } else {
+            destroyAllPopup(settings);
+            return true;
+        }
+    });
 
-    // $(document).bind('change', '.menubar input.menubar-item-combobox', function (event) {
-    //     var target = $(event.target),
-    //         itemElem = target.closest('.menubar-item'),
-    //         menubarElem = itemElem.closest('.menubar'),
-    //         menuId = menubarElem.attr('data-menuId'),
-    //         currentSettings = settings[menuId],
-    //         item = getSelectItem(currentSettings, itemElem),
-    //         onchangeInMenu = currentSettings._settings.onchange,
-    //         value;
+    $(document).bind('change', '.menubar input.menubar-item-combobox', function (event) {
+        var target = $(event.target),
+            itemElem = target.closest('.menubar-item'),
+            menubarElem = itemElem.closest('.menubar'),
+            menuId = menubarElem.attr('data-menuId'),
+            currentSettings = settings[menuId],
+            item = getSelectItem(currentSettings, itemElem),
+            onchangeInMenu = currentSettings._settings.onchange,
+            value;
 
-    //     value = target.val();
-    //     if (item.value !== value) {
-    //         itemChangeHandler(menubarElem, value, value, item, target, onchangeInMenu, currentSettings);
-    //     }
-    // });
+        value = target.val();
+        if (item.value !== value) {
+            itemChangeHandler(menubarElem, value, value, item, target, onchangeInMenu, currentSettings);
+        }
+    });
 
-    // $(document).on('mouseover mouseout', '.menubar', function (event) {
-    //     var target = $(event.target),
-    //         targetClassName = target.attr('class'),
-    //         regItem = /menubar-item-content|menubar-item-icon|menubar-item-text|menubar-item /,
-    //         regTitle = /menubar-panel-title/,
-    //         itemElem,
-    //         menubarElem,
-    //         menuId,
-    //         currentSettings,
-    //         item,
-    //         icon;
+    $(document).on('mouseover mouseout', '.menubar', function (event) {
+        var target = $(event.target),
+            targetClassName = target.attr('class'),
+            regItem = /menubar-item-content|menubar-item-icon|menubar-item-text|menubar-item /,
+            regTitle = /menubar-panel-title/,
+            itemElem,
+            menubarElem,
+            menuId,
+            currentSettings,
+            item,
+            icon;
 
-    //     if (!regItem.test(targetClassName) && !regTitle.test(targetClassName)) {
-    //         return;
-    //     }
+        if (!regItem.test(targetClassName) && !regTitle.test(targetClassName)) {
+            return;
+        }
 
-    //     if (regItem.test(targetClassName)) {
-    //         itemElem = target.closest('.menubar-item');
-    //         menubarElem = itemElem.closest('.menubar');
-    //         menuId = menubarElem.attr('data-menuId');
-    //         currentSettings = settings[menuId];
-    //         item = getSelectItem(currentSettings, itemElem);
-    //     } else {
-    //         itemElem = target.closest('.menubar-panel-title');
-    //         menubarElem = itemElem.closest('.menubar');
-    //         menuId = menubarElem.attr('data-menuId');
-    //         currentSettings = settings[menuId];
-    //         item = currentSettings.itemsInPanelTitle[parseInt(itemElem.attr('data-titleindex'))];
-    //     }
+        if (regItem.test(targetClassName)) {
+            itemElem = target.closest('.menubar-item');
+            menubarElem = itemElem.closest('.menubar');
+            menuId = menubarElem.attr('data-menuId');
+            currentSettings = settings[menuId];
+            item = getSelectItem(currentSettings, itemElem);
+        } else {
+            itemElem = target.closest('.menubar-panel-title');
+            menubarElem = itemElem.closest('.menubar');
+            menuId = menubarElem.attr('data-menuId');
+            currentSettings = settings[menuId];
+            item = currentSettings.itemsInPanelTitle[parseInt(itemElem.attr('data-titleindex'))];
+        }
 
-    //     if (event.type === 'mouseover') {
-    //         icon = getItemIcon(item.icon, 'hover', item.style);
-    //     } else if (event.type === 'mouseout' && item) {
-    //         icon = getItemIcon(item.icon, 'default', item.style);
-    //     }
+        if (event.type === 'mouseover') {
+            icon = getItemIcon(item.icon, 'hover', item.style);
+        } else if (event.type === 'mouseout' && item) {
+            icon = getItemIcon(item.icon, 'default', item.style);
+        }
 
-    //     // 指定的图片url
-    //     if (icon && icon.type === 'url' && icon.value) {
-    //         itemElem.find('.menubar-item-icon,.menubar-panel-title-icon').attr('src', icon.value);
-    //     } else if (icon && icon.type === 'sprite') {
-    //         // 雪碧图
-    //         icon = getItemIcon(item.icon, 'hover', item.style);
-    //         if (event.type === 'mouseover' && icon.value) {
-    //             itemElem.find('.menubar-item-icon,.menubar-panel-title-icon').addClass(icon.value);
-    //         } else if (event.type === 'mouseout' && icon.value) {
-    //             itemElem.find('.menubar-item-icon,.menubar-panel-title-icon').removeClass(icon.value);
-    //         }
-    //     }
-    // });
+        // 指定的图片url
+        if (icon && icon.type === 'url' && icon.value) {
+            itemElem.find('.menubar-item-icon,.menubar-panel-title-icon').attr('src', icon.value);
+        } else if (icon && icon.type === 'sprite') {
+            // 雪碧图
+            icon = getItemIcon(item.icon, 'hover', item.style);
+            if (event.type === 'mouseover' && icon.value) {
+                itemElem.find('.menubar-item-icon,.menubar-panel-title-icon').addClass(icon.value);
+            } else if (event.type === 'mouseout' && icon.value) {
+                itemElem.find('.menubar-item-icon,.menubar-panel-title-icon').removeClass(icon.value);
+            }
+        }
+    });
 
     $(window).resize(function () {
         var _settings = settings,
