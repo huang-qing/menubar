@@ -805,6 +805,7 @@
                 settings[id] = newSettings;
 
                 // init
+                elem.empty();
                 createMenu(elem, items, newSettings);
 
                 calculatePanelGroupsWidth(elem, newSettings);
