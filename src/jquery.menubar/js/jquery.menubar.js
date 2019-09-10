@@ -624,7 +624,7 @@
             onchangeInMenu,
             menubarElem,
             panelGroupElem;
-        debugger;
+
         // 点击菜单面板缩略图模式，弹出面板
         if (regTitleInPanel.test(targetClassName) && (panelGroupElem = target.closest('.menubar-panel-group-thumbnail')) && panelGroupElem.length === 1) {
             isPopup = regPanelPopup.test(targetClassName);
