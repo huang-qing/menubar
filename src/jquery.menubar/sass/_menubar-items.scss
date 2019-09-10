@@ -22,6 +22,12 @@ li {
         }
     }
 
+    >.menubar-item-disable{
+        opacity: .3;
+        filter:"alpha(opacity=30)";
+        cursor:default;
+    }
+
     >.menubar-item.arrows {
         >.menubar-item-arrows {
             display: table-cell;
@@ -59,7 +65,6 @@ li {
             }
         }
     }
-
 
     >.menubar-item.arrows.menubar-item-panel-small {
         padding-right: 0;

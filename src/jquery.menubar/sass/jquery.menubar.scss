@@ -67,7 +67,7 @@
                 >.menubar-item-container-inline{
                     display:inline-block
                 }
-                @import '_menubar-items'
+                @import '_menubar-items';
             }
         }
     }
@@ -159,6 +159,7 @@
                 height: 16px;
             }
         }
+
     }
 }
 

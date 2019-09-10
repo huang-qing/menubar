@@ -49,6 +49,7 @@ var settings = {
             },
             // panel-big small popup-small
             style: 'big',
+            disable: true,
             // defaultItem类型
             children: [{
                 text: '打印1-1',
@@ -489,6 +490,7 @@ var settings = {
         }, {
             text: '打印5',
             value: '',
+            disable: true,
             icon: {
                 sprite: {
                     'default': {
@@ -557,6 +559,7 @@ var settings = {
                     }
                 }
             },
+            disable: true,
             // panel-big small popup-small
             style: 'small',
             // defaultItem类型
@@ -701,6 +704,7 @@ var settings = {
                     }
                 }
             },
+            disable: true,
             // panel-big small popup-small
             style: 'small',
             // defaultItem类型

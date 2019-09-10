@@ -4,15 +4,15 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     // less = require('gulp-less'),
     autoprefixer = require('gulp-autoprefixer'),
-    minifycss = require('gulp-minify-css'),
+    // minifycss = require('gulp-minify-css'),
     htmlmin = require('gulp-htmlmin'),
     // jshint = require('gulp-jshint'),
-    uglify = require('gulp-uglify'),
+    // uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
-    rename = require('gulp-rename'),
+    // rename = require('gulp-rename'),
     clean = require('gulp-clean'),
     // concat = require('gulp-concat'),
-    notify = require('gulp-notify'),
+    // notify = require('gulp-notify'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
     sourcemaps = require('gulp-sourcemaps'),
@@ -41,9 +41,10 @@ gulp.task('build-css', function () {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./dist'))
         .pipe(connect.reload())
-        .pipe(notify({
-            message: 'build-css task complete'
-        }));
+        // .pipe(notify({
+        //     message: 'build-css task complete'
+        // }))
+        ;
 });
 
 // 脚本
@@ -61,9 +62,10 @@ gulp.task('build-js', function () {
         // .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'))
         .pipe(connect.reload())
-        .pipe(notify({
-            message: 'build-js task complete'
-        }));
+        // .pipe(notify({
+        //     message: 'build-js task complete'
+        // }))
+        ;
 });
 
 // 图片
@@ -89,9 +91,10 @@ gulp.task('build-html', function () {
         }))
         .pipe(gulp.dest('dist'))
         .pipe(connect.reload())
-        .pipe(notify({
-            message: 'build-html task complete'
-        }));
+        // .pipe(notify({
+        //     message: 'build-html task complete'
+        // }))
+        ;
 });
 // 清理
 gulp.task('build-clean', function () {
@@ -99,9 +102,10 @@ gulp.task('build-clean', function () {
         read: false
     })
         .pipe(clean())
-        .pipe(notify({
-            message: 'build-clean task complete'
-        }));
+        // .pipe(notify({
+        //     message: 'build-clean task complete'
+        // }))
+        ;
 });
 
 // 监视
