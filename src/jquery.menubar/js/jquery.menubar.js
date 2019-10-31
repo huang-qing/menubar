@@ -378,9 +378,14 @@
             parentIndex,
             itemIndex = parseInt(itemElem.attr('data-index')),
             item,
-            itemsInPanel = settings.itemsInPanel,
-            itemsInSubPopup = settings.itemsInSubPopup;
+            itemsInPanel,
+            itemsInSubPopup;
 
+        if (!settings) {
+            return null;
+        }
+        itemsInPanel = settings.itemsInPanel;
+        itemsInSubPopup = settings.itemsInSubPopup;
         if (regPanelItem.test(itemClassName)) {
             list = itemsInPanel;
         } else {
