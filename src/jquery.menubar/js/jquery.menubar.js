@@ -335,6 +335,9 @@
 
     // 销毁弹出的下级菜单
     function destroySubPopup (settings, currentActiveItemIndex) {
+        if (!settings) {
+            return;
+        }
         var popup,
             popupList = settings.itemsInSubPopup;
 
@@ -368,7 +371,7 @@
     function destroyCurrentAllPopup (settings) {
         destroySubPopup(settings);
         destroyPanelGroupPopupMenu(settings);
-    }
+    };
 
     // 获取选中项数据
     function getSelectItem (settings, itemElem) {
