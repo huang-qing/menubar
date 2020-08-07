@@ -508,7 +508,12 @@
         menubarElem.find('.menubar-panel-group').each(function (i) {
             var panelGroupElem = $(this),
                 panelGroup = panelGroups[i],
-                className = panelGroup.state === 'thumbnail' ? 'menubar-panel-group-thumbnail' : 'normal';
+                className;
+
+            if (!panelGroup) {
+                return;
+            }
+            className = panelGroup.state === 'thumbnail' ? 'menubar-panel-group-thumbnail' : 'normal';
 
             if (!panelGroupElem.hasClass(className)) {
                 panelGroupElem.removeClass('normal').removeClass('menubar-panel-group-thumbnail').addClass(className);
