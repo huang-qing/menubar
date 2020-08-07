@@ -268,7 +268,7 @@
                 parentArrows = popupSettings.parentArrows;
                 parentArrows.removeClass('menubar-panel-arrows-popup');
                 popup = popupSettings.popup;
-                popup.hide().unbind().remove();
+                popup.hide().off().remove();
                 popupList.pop();
             }
         }
@@ -349,7 +349,7 @@
 
                 popup = popupSettings.popup;
                 arrows.removeClass('menubar-item-arrows-popup').addClass('menubar-item-arrows-hide');
-                popup.hide().unbind().remove();
+                popup.hide().off().remove();
                 popupList.pop();
 
                 if (popupIndex === currentActiveItemIndex) {
@@ -369,9 +369,11 @@
 
     // 销毁菜单
     function destroyCurrentAllPopup (settings) {
-        destroySubPopup(settings);
-        destroyPanelGroupPopupMenu(settings);
-    };
+        if (settings) {
+            destroySubPopup(settings);
+            destroyPanelGroupPopupMenu(settings);
+        }
+    }
 
     // 获取选中项数据
     function getSelectItem (settings, itemElem) {
@@ -389,6 +391,7 @@
         }
         itemsInPanel = settings.itemsInPanel;
         itemsInSubPopup = settings.itemsInSubPopup;
+
         if (regPanelItem.test(itemClassName)) {
             list = itemsInPanel;
         } else {
@@ -609,7 +612,7 @@
     };
 
     // 绑定点击事件：全局绑定一次
-    $(document).bind('click', function (event) {
+    $(document).on('click', function (event) {
         var target = $(event.target),
             targetClassName = target.attr('class'),
             regItem = /menubar-item-content|menubar-item-icon|menubar-item-text|menubar-item /,
@@ -659,6 +662,7 @@
             onclickInMenu = currentSettings._settings.onclick;
             onchangeInMenu = currentSettings._settings.onchange;
             isPanelItem = regItemInPanel.test(itemClassName);
+
             // 点击菜单项内容，执行函数
             item = getSelectItem(currentSettings, itemElem);
             if (item.disable) {
@@ -712,7 +716,7 @@
         }
     });
 
-    $(document).bind('change keyup', '.menubar input.menubar-item-combobox', function (event) {
+    $(document).on('change keyup', '.menubar input.menubar-item-combobox', function (event) {
         var target = $(event.target),
             eventType = event.type,
             keyCode = event.keyCode,
