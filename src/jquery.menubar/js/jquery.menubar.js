@@ -421,12 +421,13 @@
 
     // 计算菜单面板各分组项的宽度
     function calculatePanelGroupsWidth (menubarElem, setting) {
+        var width = menubarElem.width();
         setTimeout(function () {
             menubarElem.find('.menubar-panel-group ').each(function () {
                 calculatePanelGroupWidth($(this), setting, 'normal', null);
             });
 
-            layout(menubarElem, setting.panelGroups);
+            layout(menubarElem, setting.panelGroups, width);
         }, 200);
     }
 
@@ -472,14 +473,16 @@
     }
 
     // 自适应布局
-    function layout (menubarElem, panelGroups) {
-        var width = menubarElem.width(),
-            // index,
-            panelGroup,
+    function layout (menubarElem, panelGroups, width) {
+        var panelGroup,
             total;
 
+        width = menubarElem.width() || width;
         destroyAllPopup(settings);
 
+        if (!panelGroups || panelGroups.length === 0) {
+            return;
+        }
         // 重置panelGroup state 为 normal
         for (var len = panelGroups.length - 1, i = len; i >= 0; i--) {
             panelGroups[i].state = 'normal';
